@@ -28,36 +28,30 @@ h1,
 h3 {
   padding-left: 40px;
 }
+
+/* Navbar styles */
 .navbar {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin-top: -60px;
-  margin-left: -180px;
+.nav-item {
+  font-size: 20px;
+  font-family: "Montserrat", serif;
 }
 
-.nav-links li {
-  padding: 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #000000;
-  font-weight: bold;
-}
-
-.user-profile img {
-  border-radius: 50%;
-  margin-top: -80px;
+.profile-picture {
+  width: 60px;
+  border-radius: 30px;
+  margin-left: 20px;
   margin-right: 20px;
 }
+
+.active {
+  font-weight: bolder;
+}
+/* --------------------------------------- */
 
 .carousel .carousel-inner .carousel-item {
   display: flex;

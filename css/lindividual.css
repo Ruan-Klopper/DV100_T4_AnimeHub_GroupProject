@@ -1,0 +1,23 @@
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item {
+  font-size: 20px;
+  font-family: "Montserrat", serif;
+}
+
+.profile-picture {
+  width: 60px;
+  border-radius: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.active {
+  font-weight: bolder;
+}
+/* --------------------------------------- */

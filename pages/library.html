@@ -3,204 +3,164 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Library</title>
+
     <link rel="stylesheet" href="../css/library.css" />
+
+    <!-- LINKS ----------------------------------------------------------------------------------------------- -->
+    <!-- Bootstrap CSS -->
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:ital,wght@0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ----------------------------------------------------------------------------------------------------- -->
   </head>
   <body>
-    <header>
-      <nav class="navbar">
-        <div class="logo">
-          <img src="../images/Anime 3.png" alt="Logo" />
-        </div>
-        <ul class="nav-links">
-          <li><a href="../home.html">Home</a></li>
-          <li><a href="#">Movie Library</a></li>
-          <li><a href="../pages/watchlist.html">Your Watchlist</a></li>
-        </ul>
-        <div class="user-profile">
-          <img
-            src="../images/Ellipse 1.png"
-            alt="User Profile"
-            width="71"
-            height="71"
-          />
-        </div>
-      </nav>
-    </header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><a class="navbar-brand" href="#"
+            ><img src="../images/Anime 3.png" alt="" style="height: 80px" /></a
+        ></a>
+        <button
+          class="btn navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Left side of the navbar -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="../home.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="../pages/library.html">Movie Library</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/watchlist.html"
+                >Movie Watchlist</a
+              >
+            </li>
+          </ul>
 
+          <!-- Right side of navbar -->
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sign In</a>
+            </li>
+          </ul>
+          <a class="profile-picture" href="#">
+            <img src="../images/Ellipse 1.png" alt="" />
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Website content -->
     <div class="container">
       <div class="row">
         <div class="sorting-box">
           <div class="sorting-left">Filtering and sorting</div>
+
+          <!-- Sorting and filtering buttons -->
           <div class="sorting-right">
-            <div
-              class="btn-group"
-              role="group"
-              aria-label="Button group with nested dropdown"
-            >
-              <div class="btn-group" role="group">
-                <!-- Must convert to a form control with radio buttons -->
-                <button
-                  id="btnGroupDrop1"
-                  type="button"
-                  class="btn-light dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Filter
-                </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <a class="dropdown-item" href="#">Dropdown link</a>
-                  <a class="dropdown-item" href="#">Dropdown link</a>
-                </div>
-              </div>
-              <div class="btn-group" role="group">
-                <button
-                  id="btnGroupDrop1"
-                  type="button"
-                  class="btn-light dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Sorting
-                </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <a class="dropdown-item" href="#">Dropdown link</a>
-                  <a class="dropdown-item" href="#">Dropdown link</a>
-                </div>
-              </div>
+
+            <!-- Sorting Dropdown -->
+            <div class="dropdown sorting-btn">
+              <button class="btn btn-light dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                <li>
+                  <p>All</p>
+                </li>
+                <!-- Default Sort -->
+                <li>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" name="filteringRadio" id="default" value="" autocomplete="off" checked>
+                    <label class="form-check-label" for="default">All</label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Filtering Dropdown -->
+            <div class="dropdown sorting-btn">
+              <button class="btn btn-light dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                <li>
+                  <p>All</p>
+                </li>
+                <!-- Default Filter -->
+                <li>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" name="SortingRadio" id="default" value="" autocomplete="off" checked>
+                    <label class="form-check-label" for="default">All</label>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
+        <div class="movie-category" id="movie-category-group">
+          <h2 style="font-family: "Montserrat", serif;">Movie Category</h2>
+          <div class="col">
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="../assets/template/Movie cover ex.png"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="pill-container" id="pill-container">
+                  <span class="badge rounded-pill text-bg-dark" id="pill-template"
+                    >Category</span
+                  >
+                </div>
+
+                <h5 class="card-title" id="CARD-Movie-Name">Movie name</h5>
+                <button class="btn btn-primary btn-gradient">Watch now</button>
+
+                <button type="button" class="btn btn-outline-dark">
+                  <i class="bi bi-bookmark-heart-fill"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Card element -->
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <div class="card" style="width: 200px">
-            <img
-              class="card-img-top"
-              src="../assets/template/Movie cover ex.png"
-              alt="Card image cap"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <a href="#" class="btn btn-primary btn-gradient">Watch now</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
+    
     <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
   </body>
