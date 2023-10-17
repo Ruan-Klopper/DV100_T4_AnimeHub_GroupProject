@@ -87,10 +87,15 @@
 
           <!-- Sorting and filtering buttons -->
           <div class="sorting-right">
-
             <!-- Sorting Dropdown -->
             <div class="dropdown sorting-btn">
-              <button class="btn btn-light dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <button
+                class="btn btn-light dropdown-toggle"
+                type="button"
+                id="sortDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Sort
               </button>
               <ul class="dropdown-menu" aria-labelledby="sortDropdown">
@@ -100,7 +105,15 @@
                 <!-- Default Sort -->
                 <li>
                   <div class="form-check">
-                    <input type="radio" class="form-check-input" name="filteringRadio" id="default" value="" autocomplete="off" checked>
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="filteringRadio"
+                      id="default"
+                      value=""
+                      autocomplete="off"
+                      checked
+                    />
                     <label class="form-check-label" for="default">All</label>
                   </div>
                 </li>
@@ -109,7 +122,13 @@
 
             <!-- Filtering Dropdown -->
             <div class="dropdown sorting-btn">
-              <button class="btn btn-light dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <button
+                class="btn btn-light dropdown-toggle"
+                type="button"
+                id="filterDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Filter
               </button>
               <ul class="dropdown-menu" aria-labelledby="filterDropdown">
@@ -119,7 +138,15 @@
                 <!-- Default Filter -->
                 <li>
                   <div class="form-check">
-                    <input type="radio" class="form-check-input" name="SortingRadio" id="default" value="" autocomplete="off" checked>
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="SortingRadio"
+                      id="default"
+                      value=""
+                      autocomplete="off"
+                      checked
+                    />
                     <label class="form-check-label" for="default">All</label>
                   </div>
                 </li>
@@ -127,43 +154,79 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="movie-category" id="movie-category-group">
-          <h2 style="font-family: "Montserrat", serif;">Movie Category</h2>
-          <div class="col">
-            <div class="card">
-              <img
-                class="card-img-top"
-                src="../assets/template/Movie cover ex.png"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <div class="pill-container" id="pill-container">
-                  <span class="badge rounded-pill text-bg-dark" id="pill-template"
-                    >Category</span
-                  >
-                </div>
-
-                <h5 class="card-title" id="CARD-Movie-Name">Movie name</h5>
-                <button class="btn btn-primary btn-gradient">Watch now</button>
-
-                <button type="button" class="btn btn-outline-dark">
-                  <i class="bi bi-bookmark-heart-fill"></i>
-                </button>
-              </div>
-            </div>
-          </div>
+      <div class="row movies-container" id="libraryMoviesContainer">
+        <!-- Items will appear here -->
+        <h2 class="movie-category-title">Action</h2>
+        <div class="row movie-category" id="movie-category-action">
+          <!-- cards will go here -->
         </div>
-        <!-- Card element -->
+
+        <h2 class="movie-category-title">Comedy</h2>
+        <div class="row movie-category" id="movie-category-comedy">
+          <!-- cards will go here -->
+        </div>
+
+        <h2 class="movie-category-title">Drama</h2>
+        <div class="row movie-category" id="movie-category-drama">
+          <!-- cards will go here -->
+        </div>
+
+        <h2 class="movie-category-title">Romance</h2>
+        <div class="row movie-category" id="movie-category-romance">
+          <!-- cards will go here -->
+        </div>
+
+        <h2 class="movie-category-title">Science Fiction</h2>
+        <div class="row movie-category" id="movie-category-scifi">
+          <!-- cards will go here -->
+        </div>
       </div>
     </div>
 
+    <!-- Template of the cards -->
+    <template id="template-card-library">
+      <div class="col">
+        <div class="card">
+          <img
+            class="card-img-top"
+            src="../assets/template/Movie cover ex.png"
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <div class="pill-container" id="pill-container">
+              <!-- Genre pills will appear here! -->
+            </div>
+
+            <h5 class="library-card-title" id="CARD-Movie-Name">Movie name</h5>
+            <button class="btn btn-primary btn-gradient">Watch now</button>
+
+            <button type="button" class="btn btn-outline-dark">
+              <i class="bi bi-bookmark-heart-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </template>
+    <!-- ------------------------------------------------------------------ -->
+    <!-- Template of the pill icon -->
+    <template id="template-pill-genre-library">
+      <span
+        class="badge rounded-pill text-bg-dark"
+        id="template-pill-genre-library-name"
+      >
+        Genre
+      </span>
+    </template>
+    <!-- ------------------------------------------------------------------ -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://api.themoviedb.org/3/movie/550?api_key=55d6709a66609e881d98203251b15b9b"></script>
     <script src="../js/main.js"></script>
   </body>
 </html>

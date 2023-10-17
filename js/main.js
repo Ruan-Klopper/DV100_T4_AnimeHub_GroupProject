@@ -1,335 +1,244 @@
-let allMovies = [
-  {
-    name: "Spirited Away",
-    genre: "Fantasy",
-    categories: ["Adventure", "Mystery"],
-  },
-  {
-    name: "My Neighbor Totoro",
-    genre: "Fantasy",
-    categories: ["Family", "Adventure"],
-  },
-  {
-    name: "Attack on Titan: Crimson Bow and Arrow",
-    genre: "Action",
-    categories: ["Fantasy", "Drama"],
-  },
-  {
-    name: "Naruto the Movie: Ninja Clash in the Land of Snow",
-    genre: "Action",
-    categories: ["Adventure", "Comedy"],
-  },
-  {
-    name: "Death Note: The Last Name",
-    genre: "Mystery",
-    categories: ["Thriller", "Psychological"],
-  },
-  {
-    name: "Fullmetal Alchemist: The Sacred Star of Milos",
-    genre: "Action",
-    categories: ["Adventure", "Drama"],
-  },
-  {
-    name: "Your Name",
-    genre: "Romance",
-    categories: ["Drama", "Supernatural"],
-  },
-  {
-    name: "Cowboy Bebop: The Movie",
-    genre: "Sci-Fi",
-    categories: ["Space", "Adventure"],
-  },
-  {
-    name: "Princess Mononoke",
-    genre: "Fantasy",
-    categories: ["Adventure", "Drama"],
-  },
-  {
-    name: "One Piece Film: Strong World",
-    genre: "Action",
-    categories: ["Adventure", "Comedy"],
-  },
-  {
-    name: "Akira",
-    genre: "Sci-Fi",
-    categories: ["Cyberpunk", "Action"],
-  },
-  {
-    name: "Neon Genesis Evangelion: The End of Evangelion",
-    genre: "Mecha",
-    categories: ["Psychological", "Drama"],
-  },
-  {
-    name: "Ghost in the Shell",
-    genre: "Sci-Fi",
-    categories: ["Cyberpunk", "Action"],
-  },
-  {
-    name: "Sword of the Stranger",
-    genre: "Action",
-    categories: ["Adventure", "Samurai"],
-  },
-  {
-    name: "Dragon Ball Z: Resurrection 'F'",
-    genre: "Action",
-    categories: ["Adventure", "Fantasy"],
-  },
-  {
-    name: "Grave of the Fireflies",
-    genre: "Drama",
-    categories: ["War", "Historical"],
-  },
-  {
-    name: "Howl's Moving Castle",
-    genre: "Fantasy",
-    categories: ["Adventure", "Romance"],
-  },
-  {
-    name: "One Punch Man: The Strongest Hero",
-    genre: "Action",
-    categories: ["Comedy", "Superhero"],
-  },
-  {
-    name: "Tokyo Godfathers",
-    genre: "Drama",
-    categories: ["Comedy", "Christmas"],
-  },
-  {
-    name: "Kiki's Delivery Service",
-    genre: "Fantasy",
-    categories: ["Adventure", "Family"],
-  },
-  {
-    name: "A Silent Voice",
-    genre: "Drama",
-    categories: ["School", "Romance"],
-  },
-  {
-    name: "Demon Slayer: Mugen Train",
-    genre: "Action",
-    categories: ["Supernatural", "Adventure"],
-  },
-  {
-    name: "Paprika",
-    genre: "Sci-Fi",
-    categories: ["Psychological", "Thriller"],
-  },
-  {
-    name: "A Whisker Away",
-    genre: "Fantasy",
-    categories: ["Romance", "Supernatural"],
-  },
-  {
-    name: "Summer Wars",
-    genre: "Sci-Fi",
-    categories: ["Comedy", "Family"],
-  },
-  {
-    name: "Wolf Children",
-    genre: "Fantasy",
-    categories: ["Slice of Life", "Drama"],
-  },
-  {
-    name: "The Girl Who Leapt Through Time",
-    genre: "Romance",
-    categories: ["Sci-Fi", "Slice of Life"],
-  },
-  {
-    name: "Akame ga Kill! Zero",
-    genre: "Action",
-    categories: ["Fantasy", "Adventure"],
-  },
-  {
-    name: "Dragon Ball Super: Broly",
-    genre: "Action",
-    categories: ["Adventure", "Fantasy"],
-  },
-  {
-    name: "Ghost in the Shell: Stand Alone Complex - Solid State Society",
-    genre: "Sci-Fi",
-    categories: ["Cyberpunk", "Mystery"],
-  },
-  {
-    name: "The Garden of Words",
-    genre: "Romance",
-    categories: ["Slice of Life", "Drama"],
-  },
-  {
-    name: "Redline",
-    genre: "Action",
-    categories: ["Sci-Fi", "Racing"],
-  },
-  {
-    name: "The Wind Rises",
-    genre: "Drama",
-    categories: ["Biography", "Historical"],
-  },
-  {
-    name: "Ajin: Demi-Human - Compel",
-    genre: "Action",
-    categories: ["Horror", "Supernatural"],
-  },
-  {
-    name: "Vampire Hunter D: Bloodlust",
-    genre: "Action",
-    categories: ["Horror", "Vampire"],
-  },
-  {
-    name: "Perfect Blue",
-    genre: "Mystery",
-    categories: ["Psychological", "Thriller"],
-  },
-  {
-    name: "Nausicaä of the Valley of the Wind",
-    genre: "Fantasy",
-    categories: ["Adventure", "Post-Apocalyptic"],
-  },
-  {
-    name: "The Promised Neverland: Grace Field's Promise",
-    genre: "Mystery",
-    categories: ["Thriller", "Psychological"],
-  },
-  {
-    name: "Steamboy",
-    genre: "Steam Punk",
-    categories: ["Adventure", "Action"],
-  },
-  {
-    name: "Promare",
-    genre: "Sci-Fi",
-    categories: ["Action", "Mecha"],
-  },
-  {
-    name: "Garden of Sinners - Paradox Spiral",
-    genre: "Mystery",
-    categories: ["Supernatural", "Psychological"],
-  },
-  {
-    name: "Children Who Chase Lost Voices",
-    genre: "Fantasy",
-    categories: ["Adventure", "Drama"],
-  },
-  {
-    name: "The Boy and the Beast",
-    genre: "Fantasy",
-    categories: ["Adventure", "Comedy"],
-  },
-  {
-    name: "Ninja Scroll",
-    genre: "Action",
-    categories: ["Adventure", "Samurai"],
-  },
-  {
-    name: "Ponyo",
-    genre: "Fantasy",
-    categories: ["Adventure", "Family"],
-  },
-  {
-    name: "Penguin Highway",
-    genre: "Sci-Fi",
-    categories: ["Adventure", "Mystery"],
-  },
-  // You can continue to add more entries to the 'animeMovies' array following the same structure.
+const animeMovies = [
+  "Spirited Away",
+  "My Neighbor Totoro",
+  "Princess Mononoke",
+  "Grave of the Fireflies",
+  "Akira",
+  "Nausicaä of the Valley of the Wind",
+  "Ghost in the Shell",
+  "Your Name",
+  "A Silent Voice",
+  "Cowboy Bebop: The Movie",
+  "Perfect Blue",
+  "Howl's Moving Castle",
+  "Wolf Children",
+  "Paprika",
+  "Summer Wars",
+  "Neon Genesis Evangelion: The End of Evangelion",
+  "Redline",
+  "The Girl Who Leapt Through Time",
+  "Tokyo Godfathers",
+  "Millennium Actress",
+  "Jin-Roh: The Wolf Brigade",
+  "The Garden of Words",
+  "The Wind Rises",
+  "Kiki's Delivery Service",
+  "Porco Rosso",
+  "The Tale of the Princess Kaguya",
+  "Ponyo",
+  "The Boy and the Beast",
+  "Whisper of the Heart",
+  "Castle in the Sky",
+  "Ninja Scroll",
+  "Patema Inverted",
+  "The Place Promised in Our Early Days",
+  "5 Centimeters Per Second",
+  "In This Corner of the World",
+  "The Cat Returns",
+  "Mary and The Witch's Flower",
+  "Steamboy",
+  "The Red Turtle",
+  "Metropolis",
+  "Memories",
+  "Sword of the Stranger",
+  "Promare",
+  "Akira",
+  "Ninja Scroll",
+  "The Disappearance of Haruhi Suzumiya",
+  "Naruto: The Last",
+  "Demon Slayer: Mugen Train",
+  "One Piece: Stampede",
+  "My Hero Academia: Two Heroes",
 ];
 
-let moviesByGenre = [
-  {
-    movieGenre: "Action",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Adventure",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Fantasy",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Science Fiction (Sci-Fi)",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Mystery",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Drama",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Romance",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Comedy",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Horror",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Slice of Life",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Psychological",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Supernatural",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Mecha",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Magic",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Historical",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Martial Arts",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Superhero",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Vampire",
-    movieArray: [],
-  },
-  {
-    movieGenre: "Cyberpunk",
-    movieArray: [],
-  },
+const genres = [
+  { id: 28, name: "Action" },
+  { id: 12, name: "Adventure" },
+  { id: 16, name: "Animation" },
+  { id: 35, name: "Comedy" },
+  { id: 80, name: "Crime" },
+  { id: 99, name: "Documentary" },
+  { id: 18, name: "Drama" },
+  { id: 10751, name: "Family" },
+  { id: 14, name: "Fantasy" },
+  { id: 36, name: "Historical" },
+  { id: 27, name: "Horror" },
+  { id: 10402, name: "Music" },
+  { id: 9648, name: "Mystery" },
+  { id: 10749, name: "Romance" },
+  { id: 878, name: "Science Fiction" },
+  { id: 10770, name: "Superhero" },
+  { id: 53, name: "Thriller" },
+  { id: 10752, name: "War" },
+  { id: 37, name: "Psychological" },
+  { id: 34, name: "Mecha" },
 ];
 
-let users = [""];
-let watchlist = [""];
+let allMovies = [];
+let users = [];
+let watchlist = [];
 
-$(document).ready(function () {
-  console.log("Document ready")
+const apiKey = "55d6709a66609e881d98203251b15b9b";
+
+// Document ready ---------------------------------------------------
+$(document).ready(async function () {
+  console.log("Document ready");
+  await saveArray();
+  loadLibraryCardsByCategory();
 });
+// Document ready ---------------------------------------------------
 
-console.log("HI");
+//accessor methods - returnes information
 
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NWQ2NzA5YTY2NjA5ZTg4MWQ5ODIwMzI1MWIxNWI5YiIsInN1YiI6IjY1MmQ0YzI5YTgwMjM2MDBlMGFiYTQ5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Yz4HWXrEqf_MCGuaeXgTeu9AOShNEsl5TLBeCo498ak",
-  },
-};
+async function getMovieDetails(movieName) {
+  // Construct the URL to search for a movie by name
+  const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
+    movieName
+  )}`;
 
-fetch("https://api.themoviedb.org/3/authentication", options)
-  .then((response) => response.json())
-  .then((response) => console.log(response))
-  .catch((err) => console.error(err));
+  try {
+    // Step 2: Fetch movie details using the provided movie name
+    const response = await fetch(apiUrl);
+
+    // Parse the movie data
+    const data = await response.json();
+    const movie = data.results[0];
+
+    if (!movie) {
+      return null;
+    }
+
+    // Map genre IDs to genre names using the provided 'genres' array
+    const genreNames = movie.genre_ids.map((genreId) => {
+      const genre = genres.find((g) => g.id === genreId);
+      return genre ? genre.name : "Unknown";
+    });
+
+    // Create the movie details object
+    const movieDetails = {
+      title: movie.title,
+      description: movie.overview,
+      coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+      genres: genreNames,
+    };
+
+    return movieDetails;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
+}
+
+// mutator methods - no return function, only executing
+
+//async important
+// Why saveArray? if someone added another movie to the array,
+// they only need to add the movie name and nothing will fall apart
+
+async function saveArray() {
+  // clears the array to prevent doublewritting
+  allMovies = [];
+
+  for (let i = 0; i < animeMovies.length; i++) {
+    const movieName = animeMovies[i];
+    const movieDetails = await getMovieDetails(movieName);
+
+    if (movieDetails) {
+      const description = movieDetails.description;
+      const coverImageUrl = movieDetails.coverImageUrl;
+      const genres = movieDetails.genres;
+      allMovies.push({
+        name: movieName,
+        description: description,
+        coverImageUrl: coverImageUrl,
+        genres: genres,
+      });
+    }
+  }
+}
+
+// Library -------------------------------------------------------------------
+
+async function loadLibraryCardsAll() {
+  // Clear all code in the libraryMoviesContainer
+  $("#libraryMoviesContainer").empty();
+  await saveArray();
+
+  const allmovies = allMovies;
+
+  // Loop through all movies and generate cards
+  for (let i = 0; i < allmovies.length; i++) {
+    const movie = allmovies[i];
+
+    // Clone the card template
+    const card = $("#template-card-library").contents().clone(true, true);
+
+    // Add the "card-all" class to the cloned card for scaling reasons
+    card.addClass("card-all");
+
+    // Update card content
+    card.find(".card-img-top").attr("src", movie.coverImageUrl);
+    card.find(".library-card-title").text(movie.name);
+
+    // Generate genre pills and append them
+    const pillContainer = card.find("#pill-container");
+    pillContainer.empty(); // Clear any existing pills
+    for (let j = 0; j < movie.genres.length; j++) {
+      const genrePill = $("#template-pill-genre-library")
+        .contents()
+        .clone(true, true);
+      genrePill.text(movie.genres[j]);
+      pillContainer.append(genrePill);
+    }
+
+    // Append the card to the libraryMoviesContainer
+    $("#libraryMoviesContainer").append(card);
+  }
+}
+
+async function loadLibraryCardsByCategory() {
+  // Clear all code in the movie category containers
+  $("#movie-category").empty();
+
+  await saveArray();
+
+  const allmovies = allMovies;
+  console.log(allmovies);
+
+  // Loop through movies and generate cards
+  for (let i = 0; i < allmovies.length; i++) {
+    const movie = allmovies[i];
+
+    // Clone the card template
+    const card = $("#template-card-library").contents().clone(true, true);
+
+    // Add the "card-category" class to the cloned card for scaling reasons
+    card.addClass("card-category");
+
+    // Update card content
+    card.find(".card-img-top").attr("src", movie.coverImageUrl);
+    card.find(".library-card-title").text(movie.name);
+
+    // Generate genre pills and append them
+    const pillContainer = card.find("#pill-container");
+    pillContainer.empty(); // Clear any existing pills
+    for (let j = 0; j < movie.genres.length; j++) {
+      const genrePill = $("#template-pill-genre-library")
+        .contents()
+        .clone(true, true);
+      genrePill.text(movie.genres[j]);
+      pillContainer.append(genrePill);
+    }
+
+    // Append the card to the appropriate category
+    for (let j = 0; j < movie.genres.length; j++) {
+      const genre = movie.genres[j];
+      
+      if (genre == ("Science Fiction")) {
+        $(`#movie-category-scifi`).append(card);
+      } else {
+        $(`#movie-category-${genre.toLowerCase()}`).append(card);
+      }
+    }
+  }
+}

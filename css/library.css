@@ -73,13 +73,31 @@
   float: left;
   margin-right: 10px;
 }
+
+/* card genre sorter */
+
+.movie-category-title{
+  height: 60px;
+  width: 100%;
+  font-family: "Montserrat", serif;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+  margin-bottom: 30px;
+}
+
 /* Card element */
 
 .card {
   width: 220px;
-  margin: 0 auto;
-  margin-bottom: 50px;
   transition: transform 0.3s ease;
+}
+
+.card-all {
+  margin: auto;
+}
+
+.card-category {
+  margin-bottom: 50px;
 }
 
 .card:hover {
