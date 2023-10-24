@@ -1,69 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/signin.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/signin.css" />
     <title>Sign Up</title>
-</head>
-<body>
-        <div class="container-fluid">
-            <div class="row flex-row">
-                <!-- Left Column for Photo -->
-                <div class="col-md-6 photo d-flex align-items-end">
-                    <h1 class="signin-head">Welcome Back!</h1>
-                    <div class="luffy" ><img src="/assets/Anime (1).png" alt="luffy" width="500px" height="500px"></div>
-                </div>
-    
-                <!-- Right Column for Sign-in Form -->
-                <div class="col-md-6 d-flex align-items-center mycontent">
-                    <!-- Logo Container -->
-                    <div class="logo-container">
-                        <div class="logo"><img class="logoimg" src="/assets/Anime/1.png" alt="logo" width="250" height="250"></div>
-                    </div>
-                    <!-- Sign-in Content -->
-                    <div class="signin-cont">
-                        <h1>Sign Up</h1>
-                        <a href="../pages/signin.html">Already have an account? Sign in here</a>
-    
-                        <!-- Sign-in Form -->
-                        <form class="signin-form wider-form">
-                            <div class="mb-3">
-                                <label for="exampleInputUsername" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="username">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Create Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                            </div>
-                            <button type="submit" class="submit-btn">C O N T I N U E</button>
-                        </form>
-                        <div class="extra-info">
-                            <p>or</p>
-                            <button type="submit" class="submit-btn2">SIGN IN WITH GOOGLE <img class="icon-1a" src="/assets/google.png" alt="google" width="40" height="40"></button>
-                            <button type="submit" class="submit-btn2">SIGN IN WITH FACEBOOK  <img class="icon-1" src="/assets//Facebook_Logo_(2019).png" alt="facebook" width="30" height="30"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-row">
+        <!-- Left Column for Photo -->
+        <div class="col-md-6 photo d-flex align-items-end">
+          <h1 class="signin-head">Welcome Back!</h1>
+          <div class="luffy">
+            <img
+              src="/assets/Anime (1).png"
+              alt="luffy"
+              width="500px"
+              height="500px"
+            />
+          </div>
         </div>
-        <script src="../js/main.js"></script>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+        <!-- Right Column for Sign-in Form -->
+        <div class="col-md-6 d-flex align-items-center mycontent">
+          <!-- Logo Container -->
+          <div class="logo-container">
+            <div class="logo">
+              <img
+                class="logoimg"
+                src="/assets/Anime/1.png"
+                alt="logo"
+                width="250"
+                height="250"
+              />
+            </div>
+          </div>
+          <!-- Sign-in Content -->
+          <div class="signin-cont">
+            <h1>Sign Up</h1>
+            <a href="../pages/signin.html"
+              >Already have an account? Sign in here</a
+            >
+
+            <!-- Sign-Up Form -->
+            <form class="signin-form wider-form" id="signup-form">
+              <div class="mb-3">
+                <label for="signup-username" class="form-label">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="signup-username"
+                  aria-describedby="username"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="signup-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="signup-email" />
+              </div>
+              <div class="mb-3">
+                <label for="signup-password" class="form-label"
+                  >Create Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="signup-password"
+                />
+              </div>
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label class="form-check-label" for="exampleCheck1"
+                  >Remember Me</label
+                >
+              </div>
+              <button
+                type="submit"
+                class="submit-btn"
+                id="signup-submit-button"
+              >
+                C O N T I N U E
+              </button>
+            </form>
+
+            <div class="extra-info">
+              <p>or</p>
+              <button type="submit" class="submit-btn2">
+                SIGN IN WITH GOOGLE
+                <img
+                  class="icon-1a"
+                  src="/assets/google.png"
+                  alt="google"
+                  width="40"
+                  height="40"
+                />
+              </button>
+              <button type="submit" class="submit-btn2">
+                SIGN IN WITH FACEBOOK
+                <img
+                  class="icon-1"
+                  src="/assets//Facebook_Logo_(2019).png"
+                  alt="facebook"
+                  width="30"
+                  height="30"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://api.themoviedb.org/3/movie/550?api_key=55d6709a66609e881d98203251b15b9b"></script>
+    <script src="../js/signin-up.js"></script>
+  </body>
 </html>
 
-
-    <!-- Javascript -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<!-- Javascript -->
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+  crossorigin="anonymous"
+></script>

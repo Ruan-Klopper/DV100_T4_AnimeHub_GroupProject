@@ -85,8 +85,20 @@ $(document).ready(async function () {
   console.log("Document ready");
   saveArray();
   loadLibraryCardsByCategory();
+  setNavUsername();
 });
 // Document ready ---------------------------------------------------
+
+function setNavUsername() {
+  const currentUser = JSON.parse(localStorage.getItem("activeUser"));
+  console.log(currentUser);
+  if(currentUser){
+    $("#nav-item-left").text(currentUser.username);
+    $("#nav-item-right").text("Sign Out");
+    $("#nav-item-left").removeAttr("href");
+    $("#nav-item-right").removeAttr("href");
+  }
+}
 
 //accessor methods - returnes information
 
@@ -215,8 +227,9 @@ function loadLibraryCardsAll() {
 
           // Update card content
           card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-          card.find(".library-card-title").text(movieDetails.name);
+          card.find('#CARD-Movie-Name').text(movieDetails.title);
 
+          console.log(movieDetails);
           // Generate genre pills and append them
           const pillContainer = card.find("#pill-container");
           pillContainer.empty(); // Clear any existing pills
@@ -284,7 +297,7 @@ function loadLibraryCardsByCategory() {
 
           // Update card content
           card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-          card.find(".library-card-title").text(movieDetails.name);
+          card.find(".library-card-title").text(movieDetails.title);
 
           // Generate genre pills and append them
           const pillContainer = card.find("#pill-container");
@@ -353,3 +366,7 @@ async function getMovieDetails22(movieName) {
     return null;
   }
 }
+
+$('#save-movie').click(function () {
+  alert("working")
+});
