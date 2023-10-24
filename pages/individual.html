@@ -81,16 +81,14 @@
     <div class="container">
       <div class="row">
         <div class="col">
+          <h3 id="movie-genre">Genre</h3>
           <h1 id="movie-title">Movie Title</h1>
-          <h3 id="movie-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-            architecto eveniet ea assumenda ducimus quidem reiciendis nam neque
-            quasi? Quaerat, placeat! Dolorem odit cupiditate animi, numquam
-            aperiam eius ipsum magni.
-          </h3>
+          <h3 id="movie-director">Directed by:</h3>
+          <h3 id="movie-actors">Actors:</h3>
+          <h3 id="movie-description">Movie description</h3>
         </div>
         <div class="col">
-          <img class="movie-image" src="../images/Show1.jpg" alt="" />
+          <img class="movie-image" id="movie-image" src="../images/Show1.jpg" alt="" />
         </div>
       </div>
     </div>
@@ -100,5 +98,8 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://api.themoviedb.org/3/movie/550?api_key=55d6709a66609e881d98203251b15b9b"></script>
+    <script src="../js/individual.js"></script>
   </body>
 </html>

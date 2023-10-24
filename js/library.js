@@ -308,6 +308,9 @@ function loadLibraryCardsByCategory() {
             }
           }
 
+          card.click(function() {
+            window.location.href = `individual.html?id=${movieDetails.id}`;
+          })
           // Add card element:---------------------------------------------------------------------------
         } else {
         }
