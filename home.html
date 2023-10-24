@@ -1,144 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+
     <link rel="stylesheet" href="css/home.css">
-    
+
+    <!-- LINKS ----------------------------------------------------------------------------------------------- -->
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:ital,wght@0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ----------------------------------------------------------------------------------------------------- -->
+
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="images/Anime 3.png" alt="Logo">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="images/Anime 3.png" alt="" style="height: 80px" /></a>
+            <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left side of the navbar -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/library.html">Movie Library</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/watchlist.html">Movie Watchlist</a>
+                    </li>
+                </ul>
+                <!-- Right side of navbar -->
+                <ul class="navbar-nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/signup.html">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/signin.html">Sign In</a>
+                    </li>
+                </ul>
+                <a class="profile-picture" href="#">
+                    <img src="images/Ellipse 1.png" alt="" />
+                </a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Movie Library</a></li>
-                <li><a href="#">Your Watchlist</a></li>
-            </ul>
-            <div class="user-profile">
-                <img src="images/Ellipse 1.png" alt="User Profile" width="71" height="71">
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- First Carousel - Just Released -->
-
     <div class="carousel">
         <div class="carousel-image">
-            <img src="images/background-image.jpg" alt="Just Released Background" width="100%" height="892px">
-            </div>
-
+            <img src="images/background-image.jpg" alt="Just Released Background" width="100%" height="892px" />
         </div>
-        <div class="carousel-text">
-            <h2>JUST RELEASED</h2>
-            <img src="images/Showlogo.png" alt="Just Released Background" width="566px" height="178px">
-            <br> 
-            <button>Watch Now</button>
+    </div>
+    <div class="carousel-text">
+        <h2>JUST RELEASED</h2>
+        <img src="images/Showlogo.png" alt="Just Released Background" width="566px" height="178px" />
+        <br>
+        <button>Watch Now</button>
     </div>
 
     <!-- Welcome Back Section -->
-
     <h1>Welcome Back</h1>
 
     <!-- Second Carousel - New Releases -->
-<h3>New Releases</h3>
-<div id="new-releases-carousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="d-flex justify-content-between">
-                <div class="card">
-                    <img src="images/movie1.jpg" alt="Movie 1" width="377" height="293">
-                    <button>Watch Now</button>
-                </div>
-                <div class="card">
-                    <img src="images/movie2.jpg" alt="Movie 2" width="377" height="293">
-                    <button>Watch Now</button>
-                </div>
-                <div class="card">
-                    <img src="images/movie3.jpg" alt="Movie 3" width="377" height="293">
-                    <button>Watch Now</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#new-releases-carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#new-releases-carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
-    <!-- Third Carousel - Most Popular -->
-
-    <h3>Most Popular</h3>
-    <div id="most-popular-carousel" class="carousel slide" data-bs-ride="carousel">
-       
+    <h3>New Releases</h3>
+    <div id="new-releases-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
+
             <div class="carousel-item">
-
                 <div class="card">
-                    <img src="images/Show1.jpg" alt="Show 1" width="213" height="293">
-                    <p>One Piece</p>
+                    <img class="card-img-top" src="" alt="" />
+                    <div class="card-body">
+                        <h5 class="library-card-title"></h5>
+                        <div id="pill-container" class="pill-container"></div>
+                    </div>
                 </div>
+            </div> 
 
+            <div class="carousel-item">
                 <div class="card">
-                    <img src="images/Show2.jpg" alt="Show 2" width="213" height="293">
-                    <p>Demonslayer</p>
+                    <img class="card-img-top" src="" alt="" />
+                    <div class="card-body">
+                        <h5 class="library-card-title"></h5>
+                        <div id="pill-container" class="pill-container"></div>
+                    </div>
                 </div>
+            </div>
 
+            <div class="carousel-item">
                 <div class="card">
-                    <img src="images/Show3.jpg" alt="Show 3" width="213" height="293">
-                    <p>Akira</p>
+                    <img class="card-img-top" src="" alt="" />
+                    <div class="card-body">
+                        <h5 class="library-card-title"></h5>
+                        <div id="pill-container" class="pill-container"></div>
+                    </div>
                 </div>
+            </div>
 
+            <div class="carousel-item">
                 <div class="card">
-                    <img src="images/Show4.jpg" alt="Show 4" width="213" height="293">
-                    <p>Summer Wars</p>
+                    <img class="card-img-top" src="" alt="" />
+                    <div class="card-body">
+                        <h5 class="library-card-title"></h5>
+                        <div id="pill-container" class="pill-container"></div>
+                    </div>
                 </div>
+            </div>
 
+            <div class="carousel-item">
                 <div class="card">
-                    <img src="images/Show5.jpg" alt="Show 5" width="213" height="293">
-                    <p>Your Name</p>
+                    <img class="card-img-top" src="" alt="" />
+                    <div class="card-body">
+                        <h5 class="library-card-title"></h5>
+                        <div id="pill-container" class="pill-container"></div>
+                    </div>
                 </div>
-             
+            </div>
+
+            <div class="carousel-item">
+                <div class="card">
+                    <img class="card-img-top" src="" alt="" />
+                    <div class="card-body">
+                        <h5 class="library-card-title"></h5>
+                        <div id="pill-container" class="pill-container"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#most-popular-carousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#new-releases-carousel"
+            data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#new-releases-carousel"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
-        <button class="carousel-control-next" type="button" data-bs-target="#most-popular-carousel" data-bs-slide="next">
+    <!-- Third Carousel - Most Popular -->
+    <h3>Most Popular</h3>
+    <div id="most-popular-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+
+                <div class="carousel-item">
+                    <div class="card">
+                        <img class="card-img-top" src="" alt="" />
+                        <div class="card-body">
+                            <h5 class="library-card-title"></h5>
+                            <div id="pill-container" class="pill-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="card">
+                        <img class="card-img-top" src="" alt="" />
+                        <div class="card-body">
+                            <h5 class="library-card-title"></h5>
+                            <div id="pill-container" class="pill-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="card">
+                        <img class="card-img-top" src="" alt="" />
+                        <div class="card-body">
+                            <h5 class="library-card-title"></h5>
+                            <div id="pill-container" class="pill-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="card">
+                        <img class="card-img-top" src="" alt="" />
+                        <div class="card-body">
+                            <h5 class="library-card-title"></h5>
+                            <div id="pill-container" class="pill-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#most-popular-carousel"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#most-popular-carousel"
+            data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
 
     <!-- Monthly Feature Section -->
-<section class="monthly-feature">
-    <h1>Monthly Feature</h1>
-    <div class="feature-image">
-        <img src="images/MonthlyBack.jpg" alt="Monthly Feature Background" width="1187" height="668">
-        <div class="feature-content">
-            <img src="images/Monthlylogo.png" alt="Monthly Feature Logo">
-            <br>
-            <p>Chihiro and her parents are moving to a small Japanese town in the
-            <br>countryside, much to Chihiro's dismay. On the way to their new 
-            <br>home, Chihiro's father makes a wrong turn and drives down a lonely 
-            <br>one-lane road which dead-ends in front of a tunnel. Her parents 
-            <br>decide to stop the car and explore the area...</p>
-            <button>Watch Now</button>
+    <section class="monthly-feature">
+        <h1>Monthly Feature</h1>
+        <div class="feature-image">
+            <img src="images/MonthlyBack.jpg" alt="Monthly Feature Background" width="1187" height="668" />
+            <div class="feature-content">
+                <img src="images/Monthlylogo.png" alt="Monthly Feature Logo" />
+                <br>
+                <p>
+                    Chihiro and her parents are moving to a small Japanese town in the
+                    countryside, much to Chihiro's dismay. On the way to their new
+                    home, Chihiro's father makes a wrong turn and drives down a lonely
+                    one-lane road which dead-ends in front of a tunnel. Her parents
+                    decide to stop the car and explore the area...
+                </p>
+                <button>Watch Now</button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    
+    <script src="js/main.js"></script>
 </body>
 </html>
