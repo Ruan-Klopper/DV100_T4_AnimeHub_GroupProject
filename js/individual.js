@@ -24,10 +24,11 @@ const genres = [
 const apiKey = "55d6709a66609e881d98203251b15b9b";
 
 $(document).ready(function () {
+  setNavUsername();
   const urlParams = new URLSearchParams(window.location.search);
   const movieID = urlParams.get("id");
-  setNavUsername();
   
+
   console.log(movieID);
   //chk id exist
   if (movieID) {

@@ -5,7 +5,6 @@
 
 $(document).ready(function () {
   $("#signup-submit-button").on("click", function () {
-    event.preventDefault();
     const username = $("#signup-username").val();
     const email = $("#signup-email").val();
     const password = $("#signup-password").val();
@@ -16,12 +15,16 @@ $(document).ready(function () {
       password: password,
     };
 
-    addUser(user);
+    addUser(user, function (success, errorValue) {
+      if (success) {
+        console.log("User added successfully!");
+      } else {
+        console.error("Error: " + errorValue);
+      }
+    });
   });
 
   $("#signin-submit-btn").on("click", function () {
-    event.preventDefault();
-    alert("Button clicked!");
     const username = $("#signin-username").val();
     const password = $("#signin-password").val();
 
@@ -30,34 +33,63 @@ $(document).ready(function () {
       password: password,
     };
 
-    checkUser(user);
+    checkUser(user, function (success, errorValue) {
+      if (success) {
+        event.preventDefault();
+        alert("User logged in successfully!");
+        window.location.href = "../home.html";
+      } else {
+        alert("Error: " + errorValue);
+      }
+    });
   });
 });
 
 // Add users to the allUsers array
-function addUser(user) {
-  const allUsersString = localStorage.getItem("allUsers");
-  const allUsers = allUsersString ? JSON.parse(allUsersString) : [];
-  allUsers.push(user);
-  const updatedAllUsersString = JSON.stringify(allUsers);
-  localStorage.setItem("allUsers", updatedAllUsersString);
-  console.log(user);
+function addUser(user, callback) {
+  let errorValue = "";
+  let success = false;
+
+  if (
+    user.username.length >= 3 &&
+    user.email.includes("@") &&
+    user.password.length >= 6
+  ) {
+    const allUsersString = localStorage.getItem("allUsers");
+    const allUsers = allUsersString ? JSON.parse(allUsersString) : [];
+    allUsers.push(user);
+    const updatedAllUsersString = JSON.stringify(allUsers);
+    localStorage.setItem("allUsers", updatedAllUsersString);
+    console.log(user);
+    success = true;
+  } else {
+    errorValue = "Invalid credentials";
+  }
+
+  if (callback && typeof callback === "function") {
+    callback(success, errorValue);
+  }
 }
 
 //Check for a user in the local data
-function checkUser(user) {
+function checkUser(user, callback) {
   // To do if failed ----------------------------
   // * Opens a Bootstrap modal that indicates that
   //   the login procedure was unsuccessful
   // * Returns an object with error message and success status
-  // To do if successful -----------------------
-  // * Empties the activeUser localStorage object
-  // * Loads the user into the activeUser localStorage object
-  // * Redirects to the home page home.html
-  // * Returns an object with success status and a success message
+
+  // Check for blank input fields
+  if (!user.username || !user.password) {
+    if (callback && typeof callback === "function") {
+      callback(false, "Input fields are blank.");
+    }
+    return; // Exit the function
+  }
+
   const allUsersString = localStorage.getItem("allUsers");
   let errorValue = "";
   let success = false;
+
   if (allUsersString !== null) {
     const allUsers = JSON.parse(allUsersString);
     for (let i = 0; i < allUsers.length; i++) {
@@ -69,31 +101,23 @@ function checkUser(user) {
         // Success
         errorValue = "Successful login";
         success = true;
-        // Clear the activeUser localStorage object
         localStorage.removeItem("activeUser");
-        // Load the user into the activeUser localStorage object
         localStorage.setItem("activeUser", JSON.stringify(user));
-        // Redirect to the home page
-        window.location.href = "../home.html";
-
-        console.log("Sucess");
+        console.log("Success");
         console.log(user);
         break;
       }
     }
     if (!success) {
       // Display error message or modal for unsuccessful login
-      // ...
       errorValue = "Invalid credentials";
-      console.log("Unsucessfull");
       console.log(user);
     }
   } else {
-    console.log("No users found in localStorage");
     errorValue = "No users registered yet.";
   }
-  return {
-    errorValue: errorValue,
-    success: success,
-  };
+
+  if (callback && typeof callback === "function") {
+    callback(success, errorValue);
+  }
 }

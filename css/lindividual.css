@@ -35,8 +35,7 @@
 
 .preview-pic {
   width: 100%;
-  height: 300px;
-  background-image: url(/assets/Anime/pic-right.jpeg);
+  height: auto;
   background-size: cover;
 }
 
@@ -49,7 +48,7 @@
 .left-col {
 
   width: 100%;
-  height: 300px;
+  height: auto;
   padding: 10px;
 
 }

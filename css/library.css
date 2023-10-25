@@ -32,6 +32,10 @@
 .active {
   font-weight: bolder;
 }
+
+.nav-item-right {
+  cursor: pointer;
+}
 /* --------------------------------------- */
 
 /* Filtering / Sorting */

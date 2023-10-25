@@ -92,12 +92,26 @@ $(document).ready(async function () {
 function setNavUsername() {
   const currentUser = JSON.parse(localStorage.getItem("activeUser"));
   console.log(currentUser);
-  if(currentUser){
+  if (currentUser) {
     $("#nav-item-left").text(currentUser.username);
     $("#nav-item-right").text("Sign Out");
-    $("#nav-item-left").removeAttr("href");
-    $("#nav-item-right").removeAttr("href");
+    $("#nav-item-left").removeAttr("href"); // Remove href from "Sign Up"
+    $("#nav-item-right").removeAttr("href"); // Remove href from "Sign Out"
+    $("#nav-item-right").attr("onclick", "signOut();");
   }
+}
+
+function signOut() {
+  // clear activeUser localStorage
+  localStorage.removeItem("activeUser");
+
+  // Restore the original state of the links
+  $("#nav-item-left").text("Sign Up");
+  $("#nav-item-right").text("Sign In");
+
+  // Update the href attributes to navigate to the correct pages
+  $("#nav-item-left").attr("href", "../pages/signup.html");
+  $("#nav-item-right").attr("href", "../pages/signin.html");
 }
 
 //accessor methods - returnes information
@@ -182,7 +196,6 @@ function loadLibraryCardsAll() {
   // Clear all code in the libraryMoviesContainer
   $("#libraryMoviesContainer").empty();
 
-
   const allmovies = allMovies;
 
   // Loop through all movies and generate cards
@@ -227,7 +240,7 @@ function loadLibraryCardsAll() {
 
           // Update card content
           card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-          card.find('#CARD-Movie-Name').text(movieDetails.title);
+          card.find("#CARD-Movie-Name").text(movieDetails.title);
 
           console.log(movieDetails);
           // Generate genre pills and append them
@@ -288,7 +301,7 @@ function loadLibraryCardsByCategory() {
           };
 
           // Add card element:---------------------------------------------------------------------------
-          
+
           // Clone the card template
           const card = $("#template-card-library").contents().clone(true, true);
 
@@ -321,9 +334,9 @@ function loadLibraryCardsByCategory() {
             }
           }
 
-          card.click(function() {
+          card.click(function () {
             window.location.href = `individual.html?id=${movieDetails.id}`;
-          })
+          });
           // Add card element:---------------------------------------------------------------------------
         } else {
         }
@@ -333,40 +346,6 @@ function loadLibraryCardsByCategory() {
   }
 }
 
-async function getMovieDetails22(movieName) {
-  const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-    movieName
-  )}`;
-
-  try {
-    const response = await fetch(apiUrl);
-
-    const data = await response.json();
-    const movie = data.results[0];
-
-    if (!movie) {
-      return null;
-    }
-
-    const genreNames = movie.genre_ids.map((genreId) => {
-      const genre = genres.find((g) => g.id === genreId);
-      return genre ? genre.name : "Unknown";
-    });
-
-    const movieDetails = {
-      title: movie.title,
-      description: movie.overview,
-      coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-      genres: genreNames,
-    };
-
-    return movieDetails;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return null;
-  }
-}
-
-$('#save-movie').click(function () {
-  alert("working")
+$("#save-movie").click(function () {
+  alert("working");
 });
