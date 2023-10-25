@@ -76,63 +76,102 @@ const animeMovies = [
     { id: 34, name: "Mecha" },
   ];
 
+// Get details from the API
 async function getMovieDetails(movieName) {
-  const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-    movieName
-  )}`;
+  const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(movieName)}`;
 
   try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    const movie = data.results[0];
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const movie = data.results[0];
 
-    if (!movie) {
-      return null;
-    }
+      if (!movie) {
+          return null;
+      }
 
-    const genreNames = movie.genre_ids.map((genreId) => {
-      const genre = genres.find((g) => g.id === genreId);
-      return genre ? genre.name : "Unknown";
-    });
+      const genreNames = movie.genre_ids.map((genreId) => {
+          const genre = genres.find((g) => g.id === genreId);
+          return genre ? genre.name : "Unknown";
+      });
 
-    const movieDetails = {
-      title: movie.original_title,
-      description: movie.overview,
-      coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-      genres: genreNames,
-    };
+      const movieDetails = {
+          title: movie.original_title,
+          description: movie.overview,
+          coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          genres: genreNames,
+      };
 
-    return movieDetails;
+      return movieDetails;
   } catch (error) {
-    console.error("Error fetching data:", error);
-    return null;
+      console.error("Error fetching data:", error);
+      return null;
   }
 }
 
-
+// Populate home page
 async function populateHomeCarousel() {
-  const homeCards = document.querySelectorAll('#home-carousel .carousel-inner .carousel-item .card');
-  animeMovies.forEach(async (movieName, index) => {
-    const card = homeCards[index];
-    const movieDetails = await getMovieDetails(movieName);
+  const homeNewReleases = document.querySelector('#new-releases-carousel .carousel-inner');
+  const homeMostPopular = document.querySelector('#most-popular-carousel .carousel-inner');
 
-    if (movieDetails) {
-      card.querySelector('.card-img-top').src = movieDetails.coverImageUrl;
-      card.querySelector('.library-card-title').textContent = movieDetails.title;
+  animeMovies.forEach(async (movieName) => {
+      const movieDetails = await getMovieDetails(movieName);
 
-      const pillContainer = card.querySelector('#pill-container');
-      pillContainer.innerHTML = ''; 
-      movieDetails.genres.forEach((genre) => {
-        const genrePill = document.createElement('span');
-        genrePill.className = 'badge bg-primary genre-pill';
-        genrePill.textContent = genre;
-        pillContainer.appendChild(genrePill);
-      });
-    }
+      if (movieDetails) {
+          const card = createMovieCard(movieDetails);
+
+          // Add card to both "New Releases" and "Most Popular" carousels
+          homeNewReleases.appendChild(card.cloneNode(true));
+          homeMostPopular.appendChild(card.cloneNode(true));
+      }
   });
 }
 
+//movie card element
+function createMovieCard(movieDetails) {
+  const card = document.createElement('div');
+  card.className = 'carousel-item';
 
-$(document).ready(function () {
+  const cardContent = document.createElement('div');
+  cardContent.className = 'card';
+
+  const cardImage = document.createElement('img');
+  cardImage.className = 'card-img-top';
+  cardImage.src = movieDetails.coverImageUrl;
+  cardImage.alt = movieDetails.title;
+
+  const cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+
+  const cardTitle = document.createElement('h5');
+  cardTitle.className = 'library-card-title';
+  cardTitle.textContent = movieDetails.title;
+
+  const pillContainer = document.createElement('div');
+  pillContainer.className = 'pill-container';
+
+  movieDetails.genres.forEach((genre) => {
+      const genrePill = document.createElement('span');
+      genrePill.className = 'badge bg-primary genre-pill';
+      genrePill.textContent = genre;
+      pillContainer.appendChild(genrePill);
+  });
+
+  cardBody.appendChild(cardTitle);
+  cardBody.appendChild(pillContainer);
+  cardContent.appendChild(cardImage);
+  cardContent.appendChild(cardBody);
+  card.appendChild(cardContent);
+
+  return card;
+}
+
+//navigation bar
+function styleNavigationBar() {
+  const navBar = document.querySelector('.navbar');
+  navBar.classList.add('navbar-library-style');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
   populateHomeCarousel();
+  styleNavigationBar();
 });
