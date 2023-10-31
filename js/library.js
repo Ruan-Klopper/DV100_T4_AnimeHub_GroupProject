@@ -334,9 +334,19 @@ function loadLibraryCardsByCategory() {
             }
           }
 
-          card.click(function () {
+          // Bind click event to the "view-movie" button
+          card.find(".view-movie").click(function () {
             window.location.href = `individual.html?id=${movieDetails.id}`;
           });
+          
+          card.find(".save-movie").click(function () {
+            const movieID = movieDetails.id;
+            let watchList = JSON.parse(localStorage.getItem('watchList')) || [];
+            watchList.push(movieID);
+            localStorage.setItem('watchList', JSON.stringify(watchList));
+          });
+          
+
           // Add card element:---------------------------------------------------------------------------
         } else {
         }
