@@ -76,7 +76,6 @@
                 style="cursor: pointer"
                 href="../pages/signin.html"
                 id="nav-item-right"
-                
                 >Sign In</a
               >
             </li>
@@ -107,7 +106,7 @@
               >
                 Sort
               </button>
-              <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+              <ul class="dropdown-menu" aria-labelledby="sortDropdown" style="padding: 10px;">
                 <li>
                   <p>All</p>
                 </li>
@@ -117,13 +116,52 @@
                     <input
                       type="radio"
                       class="form-check-input"
-                      name="filteringRadio"
+                      name="sortingRadio"
                       id="default"
-                      value=""
+                      value="default"
                       autocomplete="off"
                       checked
                     />
                     <label class="form-check-label" for="default">All</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="sortingRadio"
+                      id="popular"
+                      value="Popularity"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="popular">Popularity</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="sortingRadio"
+                      id="reldate"
+                      value="releasedate"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="reldate">Release Date</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="sortingRadio"
+                      id="rating"
+                      value="rating"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="rating">Rating</label>
                   </div>
                 </li>
               </ul>
@@ -140,23 +178,102 @@
               >
                 Filter
               </button>
-              <ul class="dropdown-menu" aria-labelledby="filterDropdown">
-                <li>
-                  <p>All</p>
-                </li>
+              <ul class="dropdown-menu" aria-labelledby="filterDropdown" style="padding: 10px;">
                 <!-- Default Filter -->
                 <li>
                   <div class="form-check">
                     <input
                       type="radio"
                       class="form-check-input"
-                      name="SortingRadio"
-                      id="default"
-                      value=""
+                      name="FilterRadio"
+                      id="category"
+                      value="category"
                       autocomplete="off"
                       checked
                     />
+                    <label class="form-check-label" for="category">Category</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="FilterRadio"
+                      id="default"
+                      value="default"
+                      autocomplete="off"
+                    />
                     <label class="form-check-label" for="default">All</label>
+                  </div>
+                </li>
+                <li>
+                  <p style="margin-bottom: 5px; margin-top: 8px;">Individual category</p>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="FilterRadio"
+                      id="action"
+                      value="action"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="action">Action</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="FilterRadio"
+                      id="comedy"
+                      value="comedy"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="comedy">Comedy
+                    </label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="FilterRadio"
+                      id="drama"
+                      value="drama"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="drama">Drama</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="FilterRadio"
+                      id="romance"
+                      value="romance"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="romance">Romance</label>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      name="FilterRadio"
+                      id="scifi"
+                      value="scifi"
+                      autocomplete="off"
+                    />
+                    <label class="form-check-label" for="scifi">Sci-Fi</label>
                   </div>
                 </li>
               </ul>
@@ -165,34 +282,39 @@
         </div>
       </div>
 
-      <div class="row movies-container" id="libraryMoviesContainer">
-        <!-- Items will appear here -->
-        <h2 class="movie-category-title">Action</h2>
-        <div class="row movie-category" id="movie-category-action">
-          <!-- cards will go here -->
-        </div>
-
-        <h2 class="movie-category-title">Comedy</h2>
-        <div class="row movie-category" id="movie-category-comedy">
-          <!-- cards will go here -->
-        </div>
-
-        <h2 class="movie-category-title">Drama</h2>
-        <div class="row movie-category" id="movie-category-drama">
-          <!-- cards will go here -->
-        </div>
-
-        <h2 class="movie-category-title">Romance</h2>
-        <div class="row movie-category" id="movie-category-romance">
-          <!-- cards will go here -->
-        </div>
-
-        <h2 class="movie-category-title">Science Fiction</h2>
-        <div class="row movie-category" id="movie-category-scifi">
-          <!-- cards will go here -->
-        </div>
+      <div class="row movies-container" id="movies-container">
+        <!-- All movies goes here -->
       </div>
     </div>
+
+    <!-- Template of movie category containers -->
+    <template id="template-movie-category-container">
+      <!-- Items will appear here -->
+      <h2 class="movie-category-title">Action</h2>
+      <div class="row movie-category" id="movie-category-action">
+        <!-- cards will go here -->
+      </div>
+
+      <h2 class="movie-category-title">Comedy</h2>
+      <div class="row movie-category" id="movie-category-comedy">
+        <!-- cards will go here -->
+      </div>
+
+      <h2 class="movie-category-title">Drama</h2>
+      <div class="row movie-category" id="movie-category-drama">
+        <!-- cards will go here -->
+      </div>
+
+      <h2 class="movie-category-title">Romance</h2>
+      <div class="row movie-category" id="movie-category-romance">
+        <!-- cards will go here -->
+      </div>
+
+      <h2 class="movie-category-title">Science Fiction</h2>
+      <div class="row movie-category" id="movie-category-scifi">
+        <!-- cards will go here -->
+      </div>
+    </template>
 
     <!-- Template of the cards -->
     <template id="template-card-library">
@@ -209,10 +331,16 @@
             </div>
 
             <h5 class="library-card-title" id="CARD-Movie-Name">MOVIE</h5>
-            
-            <button class="btn btn-primary btn-gradient view-movie">View movie</button>
 
-            <button type="button" class="btn btn-outline-dark save-movie" id="save-movie">
+            <button class="btn btn-primary btn-gradient view-movie">
+              View movie
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-dark save-movie"
+              id="save-movie"
+            >
               <i class="bi bi-bookmark-heart-fill"></i>
             </button>
           </div>
