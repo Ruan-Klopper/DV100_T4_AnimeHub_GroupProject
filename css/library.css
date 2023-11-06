@@ -42,10 +42,12 @@
 
 .sorting-box {
   width: 100%;
-  height: 60px;
+  height: auto;
   background-color: #e9b810;
   margin-bottom: 100px;
   border-radius: 8px;
+  padding-bottom: 10px;
+  float: left;
 }
 
 .sorting-left {
@@ -58,13 +60,58 @@
 }
 
 .sorting-right {
+  width: min-content;
   margin-top: 10px;
   margin-right: 10px;
   float: right;
+  margin-left: 10px;
+}
+
+.sorting-right-btn-group {
+  width: 170px;
+  height: 38px;
+  margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+  .sorting-box {
+    width: 100%;
+    height: auto;
+    background-color: #e9b810;
+    border-radius: 0px;
+    margin-bottom: 100px;
+    padding-bottom: 10px;
+  }
+
+  .sorting-left {
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .sorting-right {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center; /* Center text content */
+  }
+  .sorting-btn {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .sorting-right-btn-group {
+    width: 180px;
+    height: 38px;
+    margin: 0 auto;
+  }
 }
 
 /* Filtering and sorting menu items */
-
 
 .sorting-btn {
   float: left;
@@ -87,6 +134,7 @@
 .card {
   width: 220px;
   transition: transform 0.3s ease;
+  margin: 0 auto;
 }
 
 .card-all {

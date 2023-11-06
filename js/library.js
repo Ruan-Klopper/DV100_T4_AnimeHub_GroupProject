@@ -75,7 +75,7 @@ const genres = [
 ];
 
 let detailedMovies = [];
-let users = [];
+
 let watchlist = [];
 
 let appliedSort = "default";
@@ -85,17 +85,14 @@ const apiKey = "55d6709a66609e881d98203251b15b9b";
 
 // Document ready ---------------------------------------------------
 $(document).ready(async function () {
-  console.log("Document ready");
   setNavUsername();
   await populateDMarray();
-  console.log(detailedMovies);
   applyFilterSort();
 });
 // Document ready ---------------------------------------------------
 
 function setNavUsername() {
   const currentUser = JSON.parse(localStorage.getItem("activeUser"));
-  console.log(currentUser);
   if (currentUser) {
     $("#nav-item-left").text(currentUser.username);
     $("#nav-item-right").text("Sign Out");
@@ -118,13 +115,6 @@ function signOut() {
   $("#nav-item-right").attr("href", "../pages/signin.html");
 }
 
-//accessor methods - returnes information
-
-// pulled from the API as a JSON struckture
-
-// mutator methods - no return function, only executing
-
-// Library -------------------------------------------------------------------
 async function populateDMarray() {
   detailedMovies = [];
 
@@ -178,71 +168,35 @@ function loadLibraryCardsAll() {
   // Clear all code in the libraryMoviesContainer
   $("#libraryMoviesContainer").empty();
 
-  const allmovies = allMovies;
-
-  // Loop through all movies and generate cards
-  for (let i = 0; i < allmovies.length; i++) {
-    const movie = allmovies[i];
+  for (let i = 0; i < detailedMovies.length; i++) {
+    const movieDetails = detailedMovies[i];
 
     const movieName = animeMovies[i];
 
-    // Get movie details
-    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-      movieName
-    )}`;
+    // Clone the card template
+    const card = $("#template-card-library").contents().clone(true, true);
 
-    $.ajax({
-      url: apiUrl,
-      method: "GET",
-      dataType: "json",
-      success: function (data) {
-        if (data.results.length > 0) {
-          const movie = data.results[0];
+    // Add the "card-all" class to the cloned card for scaling reasons
+    card.addClass("card-all");
 
-          const genreNames = movie.genre_ids.map((genreId) => {
-            const genre = genres.find((g) => g.id === genreId);
-            return genre ? genre.name : "Unknown";
-          });
+    // Update card content
+    card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
+    card.find("#CARD-Movie-Name").text(movieDetails.title);
 
-          const movieDetails = {
-            id: movie.id,
-            title: movie.original_title,
-            description: movie.overview,
-            language: movie.original_language,
-            coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            genre_ids: movie.genre_ids,
-            genres: genreNames,
-          };
+    console.log(movieDetails);
+    // Generate genre pills and append them
+    const pillContainer = card.find("#pill-container");
+    pillContainer.empty(); // Clear any existing pills
+    for (let j = 0; j < movieDetails.genres.length; j++) {
+      const genrePill = $("#template-pill-genre-library")
+        .contents()
+        .clone(true, true);
+      genrePill.text(movieDetails.genres[j]);
+      pillContainer.append(genrePill);
+    }
 
-          // Clone the card template
-          const card = $("#template-card-library").contents().clone(true, true);
-
-          // Add the "card-all" class to the cloned card for scaling reasons
-          card.addClass("card-all");
-
-          // Update card content
-          card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-          card.find("#CARD-Movie-Name").text(movieDetails.title);
-
-          console.log(movieDetails);
-          // Generate genre pills and append them
-          const pillContainer = card.find("#pill-container");
-          pillContainer.empty(); // Clear any existing pills
-          for (let j = 0; j < movieDetails.genres.length; j++) {
-            const genrePill = $("#template-pill-genre-library")
-              .contents()
-              .clone(true, true);
-            genrePill.text(movieDetails.genres[j]);
-            pillContainer.append(genrePill);
-          }
-
-          // Append the card to the libraryMoviesContainer
-          $("#libraryMoviesContainer").append(card);
-        } else {
-        }
-      },
-      error: function (error) {},
-    });
+    // Append the card to the libraryMoviesContainer
+    $("#libraryMoviesContainer").append(card);
   }
 }
 
@@ -302,88 +256,50 @@ function loadLibraryCardsByCategory() {
   $("#movies-container").append(categoryContainer);
 
   // Loop through movies and generate cards
-  for (let i = 0; i < animeMovies.length; i++) {
-    const movieName = animeMovies[i];
+  for (let i = 0; i < detailedMovies.length; i++) {
+    const movieDetails = detailedMovies[i];
 
-    // Get movie details
-    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-      movieName
-    )}`;
+    const card = $("#template-card-library").contents().clone(true, true);
 
-    $.ajax({
-      url: apiUrl,
-      method: "GET",
-      dataType: "json",
-      success: function (data) {
-        if (data.results.length > 0) {
-          const movie = data.results[0];
+    // Add the "card-category" class to the cloned card for scaling reasons
+    card.addClass("card-category");
 
-          const genreNames = movie.genre_ids.map((genreId) => {
-            const genre = genres.find((g) => g.id === genreId);
-            return genre ? genre.name : "Unknown";
-          });
+    // Update card content
+    card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
+    card.find(".library-card-title").text(movieDetails.title);
 
-          const movieDetails = {
-            id: movie.id,
-            title: movie.original_title,
-            description: movie.overview,
-            language: movie.original_language,
-            coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            genre_ids: movie.genre_ids,
-            genres: genreNames,
-          };
+    // Generate genre pills and append them
+    const pillContainer = card.find("#pill-container");
+    pillContainer.empty(); // Clear any existing pills
+    for (let j = 0; j < movieDetails.genres.length; j++) {
+      const genrePill = $("#template-pill-genre-library")
+        .contents()
+        .clone(true, true);
+      genrePill.text(movieDetails.genres[j]);
+      pillContainer.append(genrePill);
+    }
 
-          // Add card element:---------------------------------------------------------------------------
+    // Append the card to the appropriate category
+    for (let j = 0; j < movieDetails.genres.length; j++) {
+      const genre = movieDetails.genres[j];
 
-          // Clone the card template
-          const card = $("#template-card-library").contents().clone(true, true);
+      if (genre == "Science Fiction") {
+        $(`#movie-category-scifi`).append(card);
+      } else {
+        $(`#movie-category-${genre.toLowerCase()}`).append(card);
+      }
+    }
 
-          // Add the "card-category" class to the cloned card for scaling reasons
-          card.addClass("card-category");
+    // Bind click event to the "view-movie" button
+    card.find(".view-movie").click(function () {
+      window.location.href = `individual.html?id=${movieDetails.id}`;
+    });
 
-          // Update card content
-          card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-          card.find(".library-card-title").text(movieDetails.title);
-
-          // Generate genre pills and append them
-          const pillContainer = card.find("#pill-container");
-          pillContainer.empty(); // Clear any existing pills
-          for (let j = 0; j < movieDetails.genres.length; j++) {
-            const genrePill = $("#template-pill-genre-library")
-              .contents()
-              .clone(true, true);
-            genrePill.text(movieDetails.genres[j]);
-            pillContainer.append(genrePill);
-          }
-
-          // Append the card to the appropriate category
-          for (let j = 0; j < movieDetails.genres.length; j++) {
-            const genre = movieDetails.genres[j];
-
-            if (genre == "Science Fiction") {
-              $(`#movie-category-scifi`).append(card);
-            } else {
-              $(`#movie-category-${genre.toLowerCase()}`).append(card);
-            }
-          }
-
-          // Bind click event to the "view-movie" button
-          card.find(".view-movie").click(function () {
-            window.location.href = `individual.html?id=${movieDetails.id}`;
-          });
-
-          card.find(".save-movie").click(function () {
-            const movieID = movieDetails.id;
-            let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
-            watchList.push(movieID);
-            localStorage.setItem("watchList", JSON.stringify(watchList));
-          });
-
-          // Add card element:---------------------------------------------------------------------------
-        } else {
-        }
-      },
-      error: function (error) {},
+    card.find(".save-movie").click(function () {
+      const movieID = movieDetails.id;
+      let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+      watchList.push(movieID);
+      localStorage.setItem("watchList", JSON.stringify(watchList));
     });
   }
 }
@@ -396,53 +312,7 @@ $("input[name='FilterRadio']").click(function () {
 $("input[name='sortingRadio']").click(function () {
   appliedSort = $(this).attr("value");
   applyFilterSort();
-  alert($(this).attr("value"));
 });
-
-function getIMD(movieName) {
-  return new Promise((resolve, reject) => {
-    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-      movieName
-    )}`;
-
-    $.ajax({
-      url: apiUrl,
-      method: "GET",
-      dataType: "json",
-      success: function (data) {
-        if (data.results.length > 0) {
-          const movie = data.results[0];
-
-          const genreNames = movie.genre_ids.map((genreId) => {
-            const genre = genres.find((g) => g.id === genreId);
-            return genre ? genre.name : "Unknown";
-          });
-
-          const movieDetails = {
-            id: movie.id,
-            title: movie.original_title,
-            description: movie.overview,
-            language: movie.original_language,
-            coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            genre_ids: movie.genre_ids,
-            genres: genreNames,
-            popularity: movie.popularity,
-            releaseDate: movie.release_date,
-            voteAverage: movie.vote_average,
-            voteCount: movie.vote_count,
-          };
-
-          resolve(movieDetails);
-        } else {
-          reject("Movie not found");
-        }
-      },
-      error: function (error) {
-        reject("ERROR");
-      },
-    });
-  });
-}
 
 async function applyFilterSort() {
   await populateDMarray();
@@ -500,3 +370,4 @@ async function applyFilterSort() {
     $("#sortDropdown").addClass("disabled");
   }
 }
+
