@@ -19,11 +19,11 @@
 }
 
 .logo {
-    width: 200px;
-    height: 200px;
+
     position: absolute;
     top: 0;
     right: 0;
+
 }
 
 .logoimg {
@@ -141,4 +141,33 @@ a {
 @media screen and (max-width: 480px) {
     .photo {min-height: 325px;}
     .mycontent {padding: 0;}
+}
+
+/* Adjust the image size for smaller devices */
+@media (max-width: 767px) {
+    .logo img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Adjust the image size for laptop screens */
+@media (min-width: 768px) {
+    .logo img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo-container {
+        margin-top: -30px;
+    }
+}
+
+/* No top margin on small screens */
+@media (max-width: 767px) {
+    .logo-container {
+        margin-top: 0;
+    }
 }
