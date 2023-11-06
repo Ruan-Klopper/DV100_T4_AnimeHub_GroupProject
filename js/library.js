@@ -74,18 +74,22 @@ const genres = [
   { id: 34, name: "Mecha" },
 ];
 
-let allMovies = [];
+let detailedMovies = [];
 let users = [];
 let watchlist = [];
+
+let appliedSort = "default";
+let appliedFilter = "category";
 
 const apiKey = "55d6709a66609e881d98203251b15b9b";
 
 // Document ready ---------------------------------------------------
 $(document).ready(async function () {
   console.log("Document ready");
-  saveArray();
-  loadLibraryCardsByCategory();
   setNavUsername();
+  await populateDMarray();
+  console.log(detailedMovies);
+  applyFilterSort();
 });
 // Document ready ---------------------------------------------------
 
@@ -116,19 +120,26 @@ function signOut() {
 
 //accessor methods - returnes information
 
-// write a new method that returnes the data that has been
 // pulled from the API as a JSON struckture
 
-function getMovieDetails(movieName) {
-  const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
-    movieName
-  )}`;
+// mutator methods - no return function, only executing
 
-  $.ajax({
-    url: apiUrl,
-    method: "GET",
-    dataType: "json",
-    success: function (data) {
+// Library -------------------------------------------------------------------
+async function populateDMarray() {
+  detailedMovies = [];
+
+  const ajaxPromises = animeMovies.map(async (movieName) => {
+    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
+      movieName
+    )}`;
+
+    try {
+      const data = await $.ajax({
+        url: apiUrl,
+        method: "GET",
+        dataType: "json",
+      });
+
       if (data.results.length > 0) {
         const movie = data.results[0];
 
@@ -137,7 +148,8 @@ function getMovieDetails(movieName) {
           return genre ? genre.name : "Unknown";
         });
 
-        const movieDetails = {
+        detailedMovies.push({
+          movieName: movieName,
           id: movie.id,
           title: movie.original_title,
           description: movie.overview,
@@ -145,52 +157,22 @@ function getMovieDetails(movieName) {
           coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
           genre_ids: movie.genre_ids,
           genres: genreNames,
-        };
-
-        // console.log("2nd function: MOVIE DATA");
-        // console.log(data);
-        // console.log("2nd function: MOVIE OVERVIEW");
-        // console.log(movieDetails);
-        return movieDetails;
+          popularity: movie.popularity,
+          releaseDate: movie.release_date,
+          voteAverage: movie.vote_average,
+          voteCount: movie.vote_count,
+        });
       } else {
-        console.log("Movie not found");
+        console.error("Movie not found:", movieName);
       }
-    },
-    error: function (error) {
-      console.error("Error fetching data:", error);
-    },
-  });
-}
-
-// mutator methods - no return function, only executing
-
-//async important
-// Why saveArray? if someone added another movie to the array,
-// they only need to add the movie name and nothing will fall apart
-
-async function saveArray() {
-  // clears the array to prevent doublewritting
-  allMovies = [];
-
-  for (let i = 0; i < animeMovies.length; i++) {
-    const movieName = animeMovies[i];
-    const movieDetails = await getMovieDetails(movieName);
-
-    if (movieDetails) {
-      const description = movieDetails.description;
-      const coverImageUrl = movieDetails.coverImageUrl;
-      const genres = movieDetails.genres;
-      allMovies.push({
-        name: movieName,
-        description: description,
-        coverImageUrl: coverImageUrl,
-        genres: genres,
-      });
+    } catch (error) {
+      console.error("ERROR:", error);
     }
-  }
-}
+  });
 
-// Library -------------------------------------------------------------------
+  // Wait for all AJAX requests to complete before returning
+  await Promise.all(ajaxPromises);
+}
 
 function loadLibraryCardsAll() {
   // Clear all code in the libraryMoviesContainer
@@ -264,9 +246,60 @@ function loadLibraryCardsAll() {
   }
 }
 
+function loadLibraryCardsFromArray(dispMovies) {
+  $("#movies-container").empty();
+
+  for (let i = 0; i < dispMovies.length; i++) {
+    const movieDetails = dispMovies[i];
+
+    const card = $("#template-card-library").contents().clone(true, true);
+
+    // Add the "card-category" class to the cloned card for scaling reasons
+    card.addClass("card-category");
+
+    // Update card content
+    card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
+    card.find(".library-card-title").text(movieDetails.title);
+
+    // Generate genre pills and append them
+    const pillContainer = card.find("#pill-container");
+    pillContainer.empty(); // Clear any existing pills
+    for (let j = 0; j < movieDetails.genres.length; j++) {
+      const genrePill = $("#template-pill-genre-library")
+        .contents()
+        .clone(true, true);
+      genrePill.text(movieDetails.genres[j]);
+      pillContainer.append(genrePill);
+    }
+
+    // Append the card to the movies-container
+    $("#movies-container").append(card);
+
+    // Bind click event to the "view-movie" button
+    card.find(".view-movie").click(function () {
+      window.location.href = `individual.html?id=${movieDetails.id}`;
+    });
+
+    card.find(".save-movie").click(function () {
+      const movieID = movieDetails.id;
+      let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+      watchList.push(movieID);
+      localStorage.setItem("watchList", JSON.stringify(watchList));
+    });
+
+    // Add card element:---------------------------------------------------------------------------
+  }
+}
+
 function loadLibraryCardsByCategory() {
-  // Clear all code in the movie category containers
-  $("#movie-category").empty();
+  // Empty the movie container
+  $("#movies-container").empty();
+
+  // Clone the movie category container template and append it to the movies container
+  const categoryContainer = $("#template-movie-category-container")
+    .contents()
+    .clone(true, true);
+  $("#movies-container").append(categoryContainer);
 
   // Loop through movies and generate cards
   for (let i = 0; i < animeMovies.length; i++) {
@@ -338,14 +371,13 @@ function loadLibraryCardsByCategory() {
           card.find(".view-movie").click(function () {
             window.location.href = `individual.html?id=${movieDetails.id}`;
           });
-          
+
           card.find(".save-movie").click(function () {
             const movieID = movieDetails.id;
-            let watchList = JSON.parse(localStorage.getItem('watchList')) || [];
+            let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
             watchList.push(movieID);
-            localStorage.setItem('watchList', JSON.stringify(watchList));
+            localStorage.setItem("watchList", JSON.stringify(watchList));
           });
-          
 
           // Add card element:---------------------------------------------------------------------------
         } else {
@@ -356,6 +388,115 @@ function loadLibraryCardsByCategory() {
   }
 }
 
-$("#save-movie").click(function () {
-  alert("working");
+$("input[name='FilterRadio']").click(function () {
+  appliedFilter = $(this).attr("value");
+  applyFilterSort();
 });
+
+$("input[name='sortingRadio']").click(function () {
+  appliedSort = $(this).attr("value");
+  applyFilterSort();
+  alert($(this).attr("value"));
+});
+
+function getIMD(movieName) {
+  return new Promise((resolve, reject) => {
+    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
+      movieName
+    )}`;
+
+    $.ajax({
+      url: apiUrl,
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        if (data.results.length > 0) {
+          const movie = data.results[0];
+
+          const genreNames = movie.genre_ids.map((genreId) => {
+            const genre = genres.find((g) => g.id === genreId);
+            return genre ? genre.name : "Unknown";
+          });
+
+          const movieDetails = {
+            id: movie.id,
+            title: movie.original_title,
+            description: movie.overview,
+            language: movie.original_language,
+            coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            genre_ids: movie.genre_ids,
+            genres: genreNames,
+            popularity: movie.popularity,
+            releaseDate: movie.release_date,
+            voteAverage: movie.vote_average,
+            voteCount: movie.vote_count,
+          };
+
+          resolve(movieDetails);
+        } else {
+          reject("Movie not found");
+        }
+      },
+      error: function (error) {
+        reject("ERROR");
+      },
+    });
+  });
+}
+
+async function applyFilterSort() {
+  await populateDMarray();
+  let completed = [];
+  let load = false;
+
+  // Load everything into their own category
+  if (appliedFilter == "category") {
+    load = false;
+    loadLibraryCardsByCategory();
+  } else if (appliedFilter == "default") {
+    completed = detailedMovies;
+    load = true;
+  } else if (appliedFilter == "action") {
+    completed = detailedMovies.filter((movie) =>
+      movie.genres.includes("Action")
+    );
+    load = true;
+  } else if (appliedFilter == "comedy") {
+    completed = detailedMovies.filter((movie) =>
+      movie.genres.includes("Comedy")
+    );
+    load = true;
+  } else if (appliedFilter == "drama") {
+    completed = detailedMovies.filter((movie) =>
+      movie.genres.includes("Drama")
+    );
+    load = true;
+  } else if (appliedFilter == "romance") {
+    completed = detailedMovies.filter((movie) =>
+      movie.genres.includes("Romance")
+    );
+    load = true;
+  } else if (appliedFilter == "scifi") {
+    completed = detailedMovies.filter((movie) =>
+      movie.genres.includes("Science Fiction")
+    );
+    load = true;
+  }
+
+  if (load) {
+    if (appliedSort == "Popularity") {
+      completed = completed.sort((a, b) => b.popularity - a.popularity);
+    } else if (appliedSort == "releasedate") {
+      completed = completed.sort(
+        (a, b) => new Date(a.releaseDate) - new Date(b.releaseDate)
+      );
+    } else if (appliedSort == "rating") {
+      completed = completed.sort((a, b) => b.voteAverage - a.voteAverage);
+    }
+    $("#sortDropdown").removeClass("disabled");
+    loadLibraryCardsFromArray(completed);
+  } else {
+    completed = [];
+    $("#sortDropdown").addClass("disabled");
+  }
+}
