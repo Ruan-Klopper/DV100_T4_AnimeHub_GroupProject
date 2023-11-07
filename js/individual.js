@@ -88,6 +88,7 @@ function getMovieDetailsById(movieID) {
           genre_ids: data.genre_ids,
           genres: genreNames,
         };
+        $("#movie-title-page").text(movieDetails.title);
 
         $("#movie-genre").text(movieDetails.genres.join(", "));
         $("#movie-title").text(movieDetails.title);
@@ -104,6 +105,7 @@ function getMovieDetailsById(movieID) {
         });
       } else {
         console.log("Movie not found");
+        $("#movie-title-page").text("Movie not found");
       }
     },
     error: function (error) {
@@ -153,8 +155,10 @@ function getMovieDetailsById(movieID) {
         for (let i = 0; i < videoData.results.length; i++) {
           const videoKey = videoData.results[i].key;
           const videoFrame = $("#video-frame").contents().clone(true, true);
-          videoFrame.find("#frame").attr("src", `https://www.youtube.com/embed/${videoKey}`);
-          $("#video-container").owlCarousel('add', videoFrame); // Add the video frame to the Owl Carousel
+          videoFrame
+            .find("#frame")
+            .attr("src", `https://www.youtube.com/embed/${videoKey}`);
+          $("#video-container").owlCarousel("add", videoFrame); // Add the video frame to the Owl Carousel
           $("#episodes-heading").text("Available videos:");
         }
         $("#video-container").trigger("refresh.owl.carousel"); // Refresh the Owl Carousel
@@ -167,5 +171,5 @@ function getMovieDetailsById(movieID) {
       console.error("Error fetching video data:", error);
       $("#episodes-heading").text("Error fetching video data:", error);
     },
-});
+  });
 }
