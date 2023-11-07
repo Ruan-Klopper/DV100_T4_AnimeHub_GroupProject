@@ -48,7 +48,6 @@
   }
 }
 /* --------------------------------------- */
-
 /* Filtering / Sorting */
 
 .sorting-box {
@@ -120,6 +119,14 @@
     height: 38px;
     margin: 0 auto;
   }
+  .card {
+    width: 220px;
+    transition: none;
+    margin: 0 auto;
+  }
+  .card:hover {
+    transform: none;
+  }
 }
 
 /* Filtering and sorting menu items */
@@ -130,16 +137,6 @@
 }
 
 /* card genre sorter */
-
-.movie-category-title {
-  height: 60px;
-  width: 100%;
-  font-family: "Montserrat", serif;
-  font-weight: bold;
-  border-bottom: 1px solid #000;
-  margin-bottom: 30px;
-}
-
 /* Card element */
 
 .card {
@@ -160,12 +157,6 @@
   transform: scale(1.05);
 }
 
-card.extend {
-  width: 400px;
-  height: auto;
-  transition: width 0.3s ease;
-}
-
 .card-title {
   font-size: 25px;
   font-family: "Montserrat", serif;
@@ -175,4 +166,22 @@ card.extend {
 
 .pill-container {
   margin-bottom: 8px;
+}
+.movie-category-title {
+  height: 60px;
+  width: 100%;
+  font-family: "Montserrat", serif;
+  font-weight: bold;
+  border-bottom: 1px solid #000;
+  margin-bottom: 30px;
+}
+
+/* Modal */
+.modal-title {
+  font-family: "Bangers", serif;
+  font-size: 30px;
+}
+
+#modal-text {
+  font-family: "Montserrat", serif;
 }

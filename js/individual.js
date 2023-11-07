@@ -38,20 +38,32 @@ $(document).ready(function () {
   // Initialize Owl Carousel on the 'video-container' element
   $("#video-container").owlCarousel({
     loop: true,
-    margin: 5,
+    margin: 10,
     responsiveClass: true,
     responsive: {
       0: {
         items: 1,
         nav: true,
+        navText: [
+          '<i class="bi bi-arrow-left-square-fill"></i>',
+          '<i class="bi bi-arrow-right-square-fill"></i>',
+        ],
       },
       600: {
         items: 2,
         nav: true,
+        navText: [
+          '<i class="bi bi-arrow-left-square-fill"></i>',
+          '<i class="bi bi-arrow-right-square-fill"></i>',
+        ],
       },
       1000: {
         items: 3,
         nav: true,
+        navText: [
+          '<i class="bi bi-arrow-left-square-fill"></i>',
+          '<i class="bi bi-arrow-right-square-fill"></i>',
+        ],
         loop: false,
       },
     },

@@ -25,91 +25,102 @@
   cursor: pointer;
 }
 
-.navbar-collapse{
+.navbar-collapse {
   text-align: center;
 }
 
-
 /* --------------------------------------- */
-.movie-genre{
+.movie-genre {
   font-size: 20px;
   margin-top: 15px;
+  font-family: "Montserrat", serif;
 }
-.movie-title{
-  font-size: 55px;
-  font-weight: bold;
+.movie-title {
+  font-size: 75px;
   text-align: left;
+  font-family: "Bangers", serif;
+  margin-bottom: 1px;
 }
-.movie-director{
+.movie-director {
   margin-top: 15px;
   font-size: 20px;
   font-weight: bold;
+  font-family: "Montserrat", serif;
 }
-.movie-actors{
+.movie-actors {
   font-size: 20px;
   font-weight: bold;
+  font-family: "Montserrat", serif;
 }
-.movie-description{
+.movie-description {
   font-size: 20px;
+  font-family: "Montserrat", serif;
 }
 
-@media (max-width: 991px){
-  .profile-picture-frame{
+@media (max-width: 991px) {
+  .profile-picture-frame {
     height: 100px;
     padding-top: 15px;
   }
-  .movie-genre{
+  .movie-genre {
     font-size: 20px;
     margin-top: 15px;
   }
-  .movie-title{
-    font-size: 45px;
-    text-align: center;
-    font-weight: bold;
+  .movie-title {
+    font-size: 55px;
   }
-  .movie-director{
+  .movie-director {
     margin-top: 15px;
     font-size: 18px;
-    font-weight: bold;
   }
-  .movie-actors{
-    font-size: 18px;
-    font-weight: bold;
+  .movie-actors {
+    font-size: 15px;
   }
-  .movie-description{
+  .movie-description {
     font-size: 15px;
   }
 }
 
-@media (max-width: 768px){
-  .movie-genre{
-    font-size: 20px;
+@media (max-width: 768px) {
+  .movie-genre {
+    font-size: 15px;
     margin-top: 15px;
   }
-  .movie-title{
-    font-size: 35px;
-    font-weight: bold;
-    text-align: left;
+  .movie-title {
+    font-size: 45px;
   }
-  .movie-director{
+  .movie-director {
     margin-top: 15px;
     font-size: 18px;
-    font-weight: bold;
   }
-  .movie-actors{
-    font-size: 18px;
-    font-weight: bold;
+  .movie-actors {
+    font-size: 15px;
   }
-  .movie-description{
-    font-size: 20px;
+  .movie-description {
+    font-size: 15px;
+  }
+  .item.ep-cover {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .item.ep-cover iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 }
 
-.top-btn{
+.top-btn {
   margin-top: 17px;
 }
 
-.movie-image{
+.movie-image {
   width: 100%;
 }
 
@@ -129,15 +140,12 @@
 .desc-container {
   width: 100vw;
   padding: 50px;
-
 }
 
 .left-col {
-
   width: 100%;
   height: auto;
   padding: 10px;
-
 }
 
 .episodes {
@@ -145,39 +153,39 @@
 }
 
 .ep-cover {
-  width: 300px;
-  height: 200px;
+  width: 300;
+  height: 200;
+  margin: 0 auto;
 }
 
-/* Style the previous (left) button */
 .owl-prev {
   background-color: #7e7e7e;
-  border-radius: 50%; /* Make it circular */
-  width: 40px; /* Adjust the button width as needed */
-  height: 40px; /* Adjust the button height as needed */
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: -20px; /* Adjust the button's horizontal position as needed */
+  left: -30px;
   z-index: 10;
   transition: background-color 0.3s ease; /* Add a transition effect */
 }
 
-/* Style the next (right) button */
 .owl-next {
   background-color: #7e7e7e;
-  border-radius: 50%; /* Make it circular */
-  width: 40px; /* Adjust the button width as needed */
-  height: 40px; /* Adjust the button height as needed */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: -20px; /* Adjust the button's horizontal position as needed */
+  right: -30px;
   z-index: 10;
-  transition: background-color 0.3s ease; /* Add a transition effect */
+  transition: background-color 0.3s ease;
 }
 
 /* Change button background color on hover */
-.owl-prev:hover, .owl-next:hover {
-  background-color: #333; /* Change to a different color on hover */
+.owl-prev:hover,
+.owl-next:hover {
+  background-color: #333;
 }

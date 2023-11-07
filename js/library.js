@@ -299,6 +299,8 @@ function loadLibraryCardsByCategory() {
       let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
       watchList.push(movieID);
       localStorage.setItem("watchList", JSON.stringify(watchList));
+      $('#saved-modal').modal('show');
+      $('#modal-text').text(`${movieDetails.movieName} has been saved to your watchlist.`);
     });
   }
 }
