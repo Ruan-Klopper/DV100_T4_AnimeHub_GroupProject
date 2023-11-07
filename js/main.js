@@ -76,12 +76,22 @@ const animeMovies = [
     { id: 34, name: "Mecha" },
   ];
 
-// Get details from the API
+ // Shuffle function to randomize the movie list
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 async function getMovieDetails(movieName) {
   const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(movieName)}`;
 
   try {
       const response = await fetch(apiUrl);
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
       const data = await response.json();
       const movie = data.results[0];
 
@@ -99,6 +109,7 @@ async function getMovieDetails(movieName) {
           description: movie.overview,
           coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
           genres: genreNames,
+          id: movie.id,
       };
 
       return movieDetails;
@@ -108,70 +119,145 @@ async function getMovieDetails(movieName) {
   }
 }
 
-// Populate home page
-async function populateHomeCarousel() {
-  const homeNewReleases = document.querySelector('#new-releases-carousel .carousel-inner');
-  const homeMostPopular = document.querySelector('#most-popular-carousel .carousel-inner');
+// Function to set the username in the navigation bar
+function setNavUsername() {
+  const currentUser = JSON.parse(localStorage.getItem("activeUser"));
+  if (currentUser) {
+      $("#nav-item-left").text(currentUser.username);
+      $("#nav-item-right").text("Sign Out");
+      $("#nav-item-left").removeAttr("href"); // Remove href from "Sign Up"
+      $("#nav-item-right").removeAttr("href"); // Remove href from "Sign Out"
+      $("#nav-item-right").attr("onclick", "signOut();");
+  }
+}
 
-  animeMovies.forEach(async (movieName) => {
+// Function to sign out the user
+function signOut() {
+  // Clear the activeUser localStorage
+  localStorage.removeItem("activeUser");
+
+  // Restore the original state of the links
+  $("#nav-item-left").text("Sign Up");
+  $("#nav-item-right").text("Sign In");
+
+  // Update the href attributes to navigate to the correct pages
+  $("#nav-item-left").attr("href", "../pages/signup.html");
+  $("#nav-item-right").attr("href", "../pages/signin.html");
+}
+
+// Shuffle function to randomize the movie list
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+async function getMovieDetails(movieName) {
+  const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(movieName)}`;
+
+  try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      const movie = data.results[0];
+
+      if (!movie) {
+          return null;
+      }
+
+      const genreNames = movie.genre_ids.map((genreId) => {
+          const genre = genres.find((g) => g.id === genreId);
+          return genre ? genre.name : "Unknown";
+      });
+
+      const movieDetails = {
+          title: movie.original_title,
+          description: movie.overview,
+          coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+          genres: genreNames,
+          id: movie.id,
+      };
+
+      return movieDetails;
+  } catch (error) {
+      console.error("Error fetching data:", error);
+      return null;
+  }
+}
+
+// Function to create a movie card
+function createMovieCard(movieDetails) {
+  const card = $("<div>").addClass("col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center movie-card");
+  const cardContent = $("<div>").addClass("card mb-0 mr-0");
+  const cardImage = $("<img>").addClass("card-img-top").attr("src", movieDetails.coverImageUrl).attr("alt", movieDetails.title);
+  const cardBody = $("<div>").addClass("card-body");
+  const pillContainer = $("<div>").addClass("pill-container");
+
+  movieDetails.genres.forEach((genre) => {
+      const genrePill = $("<span>").addClass("badge rounded-pill text-bg-dark").text(genre);
+      pillContainer.append(genrePill);
+  });
+
+  const cardTitle = $("<h5>").addClass("library-card-title").text(movieDetails.title);
+  const viewButton = $("<button>").addClass("btn btn-primary btn-gradient view-movie").text("View movie");
+  const saveButton = $("<button>").addClass("btn btn-outline-dark save-movie").html('<i class="bi bi-bookmark-heart-fill"></i>');
+
+  cardBody.append(pillContainer);
+  cardBody.append(cardTitle);
+  cardBody.append(viewButton);
+  cardBody.append(saveButton);
+  cardContent.append(cardImage);
+  cardContent.append(cardBody);
+  card.append(cardContent);
+
+  // Bind click event to the "view-movie" button
+  viewButton.click(function () {
+      window.location.href = `individual.html?id=${movieDetails.id}`;
+  });
+
+  // Bind click event to the "save-movie" button
+  saveButton.click(function () {
+      const movieID = movieDetails.id;
+      let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+      watchList.push(movieID);
+      localStorage.setItem("watchList", JSON.stringify(watchList));
+  });
+
+  return card;
+}
+
+// Function to populate the home page with movie cards
+async function populateHomeCards() {
+  const homeNewReleases = $("#home-new-releases");
+  const homeMostPopular = $("#home-most-popular");
+
+  const limitNewReleases = 20;
+  const limitMostPopular = 20 + Math.floor(Math.random() * 11);
+
+  // Shuffle the animeMovies array
+  shuffleArray(animeMovies);
+
+  for (const movieName of animeMovies) {
       const movieDetails = await getMovieDetails(movieName);
 
       if (movieDetails) {
           const card = createMovieCard(movieDetails);
 
-          // Add card to both "New Releases" and "Most Popular" carousels
-          homeNewReleases.appendChild(card.cloneNode(true));
-          homeMostPopular.appendChild(card.cloneNode(true));
+          if (homeNewReleases.children().length < limitNewReleases) {
+              homeNewReleases.append(card);
+          }
+
+          if (homeMostPopular.children().length < limitMostPopular) {
+              homeMostPopular.append(card.clone());
+          }
       }
-  });
+  }
 }
 
-//movie card element
-function createMovieCard(movieDetails) {
-  const card = document.createElement('div');
-  card.className = 'carousel-item';
-
-  const cardContent = document.createElement('div');
-  cardContent.className = 'card';
-
-  const cardImage = document.createElement('img');
-  cardImage.className = 'card-img-top';
-  cardImage.src = movieDetails.coverImageUrl;
-  cardImage.alt = movieDetails.title;
-
-  const cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
-
-  const cardTitle = document.createElement('h5');
-  cardTitle.className = 'library-card-title';
-  cardTitle.textContent = movieDetails.title;
-
-  const pillContainer = document.createElement('div');
-  pillContainer.className = 'pill-container';
-
-  movieDetails.genres.forEach((genre) => {
-      const genrePill = document.createElement('span');
-      genrePill.className = 'badge bg-primary genre-pill';
-      genrePill.textContent = genre;
-      pillContainer.appendChild(genrePill);
-  });
-
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(pillContainer);
-  cardContent.appendChild(cardImage);
-  cardContent.appendChild(cardBody);
-  card.appendChild(cardContent);
-
-  return card;
-}
-
-//navigation bar
-function styleNavigationBar() {
-  const navBar = document.querySelector('.navbar');
-  navBar.classList.add('navbar-library-style');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  populateHomeCarousel();
-  styleNavigationBar();
+$(document).ready(() => {
+  setNavUsername(); // Call the setNavUsername function to set the navigation bar based on the user's status
+  populateHomeCards();
 });
