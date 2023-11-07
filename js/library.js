@@ -12,7 +12,6 @@ const animeMovies = [
   "Perfect Blue",
   "Howl's Moving Castle",
   "Wolf Children",
-  "Paprika",
   "Summer Wars",
   "Neon Genesis Evangelion: The End of Evangelion",
   "Redline",
@@ -181,7 +180,7 @@ function loadLibraryCardsAll() {
 
     // Update card content
     card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-    card.find("#CARD-Movie-Name").text(movieDetails.title);
+    card.find("#CARD-Movie-Name").text(movieDetails.movieName);
 
     console.log(movieDetails);
     // Generate genre pills and append them
@@ -213,7 +212,7 @@ function loadLibraryCardsFromArray(dispMovies) {
 
     // Update card content
     card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-    card.find(".library-card-title").text(movieDetails.title);
+    card.find(".library-card-title").text(movieDetails.movieName);
 
     // Generate genre pills and append them
     const pillContainer = card.find("#pill-container");
@@ -266,7 +265,7 @@ function loadLibraryCardsByCategory() {
 
     // Update card content
     card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-    card.find(".library-card-title").text(movieDetails.title);
+    card.find(".library-card-title").text(movieDetails.movieName);
 
     // Generate genre pills and append them
     const pillContainer = card.find("#pill-container");

@@ -6,56 +6,69 @@ $(document).ready(function () {
 });
 
 function loadWatchlistCards() {
-  $("#watchlist-container").empty();
   // Get the watchlist from local storage
-  const watchlist = JSON.parse(localStorage.getItem("watchList")) || [];
+  const watchlist = JSON.parse(localStorage.getItem("watchList"));
 
-  // Find the container where cards will be displayed
-  const watchlistContainer = document.getElementById("watchlist-container");
+  if (watchlist && watchlist.length > 0) {
+    console.log(watchlist.length);
+    // Do this if there are items in the watchlist array
+    $("#watchlist-container").empty();
+    // Find the container where cards will be displayed
+    const watchlistContainer = document.getElementById("watchlist-container");
 
-  // Go through each movie id in the watchlist
-  watchlist.forEach(function (movieID) {
-    $.ajax({
-      url: `https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}`,
-      method: "GET",
-      dataType: "json",
-      success: function (data) {
-        if (data) {
-          const movie = data;
+    // Go through each movie id in the watchlist
+    watchlist.forEach(function (movieID) {
+      $.ajax({
+        url: `https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}`,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+          if (data) {
+            const movie = data;
 
-          const movieDetails = {
-            id: movie.id,
-            title: movie.title,
-            description: movie.overview,
-            coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-          };
+            const movieDetails = {
+              id: movie.id,
+              title: movie.title,
+              description: movie.overview,
+              coverImageUrl: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            };
 
-          const card = $("#watchlist-card").contents().clone(true, true);
-          card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
-          card.find("#movie-title").text(movieDetails.title);
-          card.find("#movie-description").text(movieDetails.description);
-          $("#watchlist-container").append(card);
+            const card = $("#watchlist-card").contents().clone(true, true);
+            card.find(".card-img-top").attr("src", movieDetails.coverImageUrl);
+            card.find("#movie-title").text(movieDetails.title);
+            card.find("#movie-description").text(movieDetails.description);
+            $("#watchlist-container").append(card);
 
-          card.find(".view-movie").click(function () {
-            window.location.href = `individual.html?id=${movieDetails.id}`;
-          });
+            card.find(".view-movie").click(function () {
+              window.location.href = `individual.html?id=${movieDetails.id}`;
+            });
 
-          card.find(".remove").click(function () {
-            let watchListLocal = JSON.parse(localStorage.getItem("watchList")) || [];
-            const updatedWatchlist = watchListLocal.filter((id) => id !== movieID);   
-            localStorage.setItem("watchList", JSON.stringify(updatedWatchlist));
-            loadWatchlistCards();
-        });
-        
-        } else {
-          console.error("Movie not found:", movieID);
-        }
-      },
-      error: function (error) {
-        console.error("ERROR:", error);
-      },
+            card.find(".remove").click(function () {
+              let watchListLocal =
+                JSON.parse(localStorage.getItem("watchList")) || [];
+              const updatedWatchlist = watchListLocal.filter(
+                (id) => id !== movieID
+              );
+              localStorage.setItem(
+                "watchList",
+                JSON.stringify(updatedWatchlist)
+              );
+              loadWatchlistCards();
+            });
+          } else {
+            console.error("Movie not found:", movieID);
+          }
+        },
+        error: function (error) {
+          console.error("ERROR:", error);
+        },
+      });
     });
-  });
+  } else {
+    // Append the notification if the watchlist array is empty
+    $("#watchlist-container").empty();
+    $("#watchlist-container").append($("#empty").contents());
+  }
 }
 
 function setNavUsername() {

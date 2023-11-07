@@ -27,22 +27,39 @@ $(document).ready(function () {
   setNavUsername();
   const urlParams = new URLSearchParams(window.location.search);
   const movieID = urlParams.get("id");
-  
 
-  console.log(movieID);
-  //chk id exist
+  // Check if the movie ID exists
   if (movieID) {
     getMovieDetailsById(movieID);
   } else {
-    //error state
+    // Handle the error state
   }
 
-  
+  // Initialize Owl Carousel on the 'video-container' element
+  $("#video-container").owlCarousel({
+    loop: true,
+    margin: 5,
+    responsiveClass: true,
+    responsive: {
+      0: {
+        items: 1,
+        nav: true,
+      },
+      600: {
+        items: 2,
+        nav: true,
+      },
+      1000: {
+        items: 3,
+        nav: true,
+        loop: false,
+      },
+    },
+  });
 });
 
 function setNavUsername() {
   const currentUser = JSON.parse(localStorage.getItem("activeUser"));
-  console.log(currentUser);
   if (currentUser) {
     $("#nav-item-left").text(currentUser.username);
     $("#nav-item-right").text("Sign Out");
@@ -63,7 +80,8 @@ function getMovieDetailsById(movieID) {
         const genreNames = data.genres.map((genre) => genre.name);
 
         const movieDetails = {
-          title: data.original_title,
+          id: data.id,
+          title: data.title,
           description: data.overview,
           language: data.original_language,
           coverImageUrl: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
@@ -71,16 +89,19 @@ function getMovieDetailsById(movieID) {
           genres: genreNames,
         };
 
-        console.log("Movie Data:");
-        console.log(movieDetails);
-        console.log(data);
-
         $("#movie-genre").text(movieDetails.genres.join(", "));
         $("#movie-title").text(movieDetails.title);
         // $('#movie-director').text("Movie Directors names");
         // $('#movie-actors').text("Movie Actors names");
         $("#movie-description").text(movieDetails.description);
         $("#movie-image").attr("src", movieDetails.coverImageUrl);
+
+        $(".save-movie").click(function () {
+          const movieID = movieDetails.id;
+          let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
+          watchList.push(movieID);
+          localStorage.setItem("watchList", JSON.stringify(watchList));
+        });
       } else {
         console.log("Movie not found");
       }
@@ -120,4 +141,31 @@ function getMovieDetailsById(movieID) {
       console.error("Error fetching credits data:", error);
     },
   });
+
+  const videoUrl = `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${apiKey}`;
+
+  $.ajax({
+    url: videoUrl,
+    method: "GET",
+    dataType: "json",
+    success: function (videoData) {
+      if (videoData.results.length > 0) {
+        for (let i = 0; i < videoData.results.length; i++) {
+          const videoKey = videoData.results[i].key;
+          const videoFrame = $("#video-frame").contents().clone(true, true);
+          videoFrame.find("#frame").attr("src", `https://www.youtube.com/embed/${videoKey}`);
+          $("#video-container").owlCarousel('add', videoFrame); // Add the video frame to the Owl Carousel
+          $("#episodes-heading").text("Available videos:");
+        }
+        $("#video-container").trigger("refresh.owl.carousel"); // Refresh the Owl Carousel
+      } else {
+        console.error("No video data available for this movie.");
+        $("#episodes-heading").text("No video data available for this movie.");
+      }
+    },
+    error: function (error) {
+      console.error("Error fetching video data:", error);
+      $("#episodes-heading").text("Error fetching video data:", error);
+    },
+});
 }

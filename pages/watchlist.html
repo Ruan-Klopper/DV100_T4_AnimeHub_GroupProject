@@ -79,9 +79,11 @@
               >
             </li>
           </ul>
-          <a class="profile-picture" href="#">
-            <img src="../images/Ellipse_1.png" alt="" />
-          </a>
+          <div class="profile-picture-frame">
+            <a class="profile-picture" href="#">
+              <img src="../images/Ellipse_1.png" alt="" />
+            </a>
+          </div>
         </div>
       </div>
     </nav>
@@ -91,8 +93,13 @@
     <div class="container">
       <div class="row" id="watchlist-container">
         <!-- Movie cards dynamically added -->
+        
       </div>
     </div>
+
+    <template id="empty">
+      <h1 style="text-align: center; color: #bebebe; margin-top: 150px;" >Your watchlist is empty</h1>
+    </template>
 
     <template id="watchlist-card">
       <div class="col">
@@ -108,7 +115,10 @@
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </p>
-            <a href="#" class="btn btn-primary btn-gradient view-movie" style="width: 85%"
+            <a
+              href="#"
+              class="btn btn-primary btn-gradient view-movie"
+              style="width: 85%"
               >View movie</a
             >
             <a href="#" class="btn btn-outline-dark remove" style="width: 13%"
