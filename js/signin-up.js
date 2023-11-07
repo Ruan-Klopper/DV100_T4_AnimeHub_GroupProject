@@ -37,7 +37,7 @@ $(document).ready(function () {
       if (success) {
         event.preventDefault();
         alert("User logged in successfully!");
-        window.location.href = "../home.html";
+        window.location.href = "../index.html";
       } else {
         alert("Error: " + errorValue);
       }
