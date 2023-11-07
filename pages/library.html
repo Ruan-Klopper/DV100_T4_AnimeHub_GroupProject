@@ -34,7 +34,7 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#"
           ><a class="navbar-brand" href="#"
-            ><img src="../images/Anime 3.png" alt="" style="height: 80px" /></a
+            ><img src="../images/Anime_3.png" alt="" style="height: 80px" /></a
         ></a>
         <button
           class="btn navbar-toggler"
@@ -81,7 +81,7 @@
             </li>
           </ul>
           <a class="profile-picture" href="#">
-            <img src="../images/Ellipse 1.png" alt="" />
+            <img src="../images/Ellipse_1.png" alt="" />
           </a>
         </div>
       </div>
@@ -95,188 +95,213 @@
 
           <!-- Sorting and filtering buttons -->
           <div class="sorting-right">
-            <!-- Sorting Dropdown -->
-            <div class="dropdown sorting-btn">
-              <button
-                class="btn btn-light dropdown-toggle"
-                type="button"
-                id="sortDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Sort
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="sortDropdown" style="padding: 10px;">
-                <li>
-                  <p>All</p>
-                </li>
-                <!-- Default Sort -->
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="sortingRadio"
-                      id="default"
-                      value="default"
-                      autocomplete="off"
-                      checked
-                    />
-                    <label class="form-check-label" for="default">All</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="sortingRadio"
-                      id="popular"
-                      value="Popularity"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="popular">Popularity</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="sortingRadio"
-                      id="reldate"
-                      value="releasedate"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="reldate">Release Date</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="sortingRadio"
-                      id="rating"
-                      value="rating"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="rating">Rating</label>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <div class="sorting-right-btn-group">
+              <!-- Sorting Dropdown -->
+              <div class="dropdown sorting-btn">
+                <button
+                  class="btn btn-light dropdown-toggle"
+                  type="button"
+                  id="sortDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Sort
+                </button>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="sortDropdown"
+                  style="padding: 10px"
+                >
+                  <li>
+                    <p>All</p>
+                  </li>
+                  <!-- Default Sort -->
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="sortingRadio"
+                        id="default"
+                        value="default"
+                        autocomplete="off"
+                        checked
+                      />
+                      <label class="form-check-label" for="default">All</label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="sortingRadio"
+                        id="popular"
+                        value="Popularity"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="popular"
+                        >Popularity</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="sortingRadio"
+                        id="reldate"
+                        value="releasedate"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="reldate"
+                        >Release Date</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="sortingRadio"
+                        id="rating"
+                        value="rating"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="rating"
+                        >Rating</label
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
 
-            <!-- Filtering Dropdown -->
-            <div class="dropdown sorting-btn">
-              <button
-                class="btn btn-light dropdown-toggle"
-                type="button"
-                id="filterDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Filter
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="filterDropdown" style="padding: 10px;">
-                <!-- Default Filter -->
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="FilterRadio"
-                      id="category"
-                      value="category"
-                      autocomplete="off"
-                      checked
-                    />
-                    <label class="form-check-label" for="category">Category</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="FilterRadio"
-                      id="default"
-                      value="default"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="default">All</label>
-                  </div>
-                </li>
-                <li>
-                  <p style="margin-bottom: 5px; margin-top: 8px;">Individual category</p>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="FilterRadio"
-                      id="action"
-                      value="action"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="action">Action</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="FilterRadio"
-                      id="comedy"
-                      value="comedy"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="comedy">Comedy
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="FilterRadio"
-                      id="drama"
-                      value="drama"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="drama">Drama</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="FilterRadio"
-                      id="romance"
-                      value="romance"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="romance">Romance</label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      type="radio"
-                      class="form-check-input"
-                      name="FilterRadio"
-                      id="scifi"
-                      value="scifi"
-                      autocomplete="off"
-                    />
-                    <label class="form-check-label" for="scifi">Sci-Fi</label>
-                  </div>
-                </li>
-              </ul>
+              <!-- Filtering Dropdown -->
+              <div class="dropdown sorting-btn">
+                <button
+                  class="btn btn-light dropdown-toggle"
+                  type="button"
+                  id="filterDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Filter
+                </button>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="filterDropdown"
+                  style="padding: 10px"
+                >
+                  <!-- Default Filter -->
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="FilterRadio"
+                        id="category"
+                        value="category"
+                        autocomplete="off"
+                        checked
+                      />
+                      <label class="form-check-label" for="category"
+                        >Category</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="FilterRadio"
+                        id="default"
+                        value="default"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="default">All</label>
+                    </div>
+                  </li>
+                  <li>
+                    <p style="margin-bottom: 5px; margin-top: 8px">
+                      Individual category
+                    </p>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="FilterRadio"
+                        id="action"
+                        value="action"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="action"
+                        >Action</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="FilterRadio"
+                        id="comedy"
+                        value="comedy"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="comedy"
+                        >Comedy
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="FilterRadio"
+                        id="drama"
+                        value="drama"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="drama">Drama</label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="FilterRadio"
+                        id="romance"
+                        value="romance"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="romance"
+                        >Romance</label
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="FilterRadio"
+                        id="scifi"
+                        value="scifi"
+                        autocomplete="off"
+                      />
+                      <label class="form-check-label" for="scifi">Sci-Fi</label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -318,8 +343,11 @@
 
     <!-- Template of the cards -->
     <template id="template-card-library">
-      <div class="col">
-        <div class="card">
+      <div
+        class="col-xs-12 col-sm-6 col-md-4 col-lg-3 justify-content-center movie-card"
+        id="card-column-structure"
+      >
+        <div class="card mb-0 mr-0">
           <img
             class="card-img-top"
             src="../assets/template/Movie cover ex.png"
