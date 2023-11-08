@@ -12,7 +12,8 @@ Group development project for term 3
   - [Sign In and Up](#signin)
 - [Project demonstration](#project-demonstration)
   - [Demo Video](#demo-video)
-  - [Screen shots](#screen-shots)
+    - [Group presentation](#group-work)
+    - [Individual presentation](#individual-work)
 - [Getting Started](#getting-started)
   - [Installing](#installing)
 - [Built With](#built-with)
@@ -49,13 +50,19 @@ The Sign In and Sign Up page is a critical part of the AnimeHub website's user a
 
 ## Project demonstration
 
-### Demo video
-
+## Demo video
+### Group work
 - Watch the project demo on Google Drive:
   [**Click here!**](https://drive.google.com/drive/folders/16NxU53StLTM-5FaEPtXnjy9sL3s55Yua?usp=sharing)
 
 - BACKUP LINK
   https://drive.google.com/drive/folders/16NxU53StLTM-5FaEPtXnjy9sL3s55Yua?usp=sharing
+
+### Individual work
+- Individual demos will be in the Individual Presentations folder in Google drive:
+  [**View individual work**](https://drive.google.com/drive/folders/1QnH61kaY7yDYDEqD3jpx4chApKFlr_nK?usp=sharing)
+- BACKUP LINK:
+https://drive.google.com/drive/folders/1QnH61kaY7yDYDEqD3jpx4chApKFlr_nK?usp=sharing
 
 ## Getting Started
 
