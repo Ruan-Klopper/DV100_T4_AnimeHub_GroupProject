@@ -17,9 +17,19 @@ $(document).ready(function () {
 
     addUser(user, function (success, errorValue) {
       if (success) {
+        event.preventDefault();
+        $("#signup-modal").modal("show");
+        $("#modal-text").text(
+          `Welcome onboard ${user.username}, please sign in.`
+        );
+        $("#close-modal").text("Sign in");
+        $("#close-modal").click(function () {
+          window.location.href = "../pages/signin.html";
+        });
         console.log("User added successfully!");
       } else {
-        console.error("Error: " + errorValue);
+        $("#signup-modal").modal("show");
+        $("#modal-text").text(`Oopsie: ${errorValue}`);
       }
     });
   });
@@ -36,10 +46,16 @@ $(document).ready(function () {
     checkUser(user, function (success, errorValue) {
       if (success) {
         event.preventDefault();
-        alert("User logged in successfully!");
-        window.location.href = "../index.html";
+        $("#signin-modal").modal("show");
+        $("#modal-text").text(`Welcome onboard ${user.username}`);
+        $("#close-modal").text("Get started with JOY!");
+        $("#close-modal").click(function () {
+          window.location.href = "../index.html";
+        });
       } else {
-        alert("Error: " + errorValue);
+        event.preventDefault();
+        $("#signin-modal").modal("show");
+        $("#modal-text").text(`Oopsie: ${errorValue}`);
       }
     });
   });

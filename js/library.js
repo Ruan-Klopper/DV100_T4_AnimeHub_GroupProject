@@ -238,6 +238,10 @@ function loadLibraryCardsFromArray(dispMovies) {
       let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
       watchList.push(movieID);
       localStorage.setItem("watchList", JSON.stringify(watchList));
+      $("#saved-modal").modal("show");
+      $("#modal-text").text(
+        `${movieDetails.movieName} has been saved to your watchlist.`
+      );
     });
 
     // Add card element:---------------------------------------------------------------------------
@@ -299,8 +303,10 @@ function loadLibraryCardsByCategory() {
       let watchList = JSON.parse(localStorage.getItem("watchList")) || [];
       watchList.push(movieID);
       localStorage.setItem("watchList", JSON.stringify(watchList));
-      $('#saved-modal').modal('show');
-      $('#modal-text').text(`${movieDetails.movieName} has been saved to your watchlist.`);
+      $("#saved-modal").modal("show");
+      $("#modal-text").text(
+        `${movieDetails.movieName} has been saved to your watchlist.`
+      );
     });
   }
 }
@@ -371,4 +377,3 @@ async function applyFilterSort() {
     $("#sortDropdown").addClass("disabled");
   }
 }
-
