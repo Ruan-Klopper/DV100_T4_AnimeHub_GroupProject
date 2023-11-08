@@ -102,9 +102,9 @@ Contributions are what make the open source community such an amazing place to b
 
 - **Ruan Klopper** - _Taking photos, and doing some coding: HTML, CSS, JavaScript_ - [Photography](https://sites.google.com/view/ruan-klopper-photographyhy/home?authuser), [Github](https://github.com/Ruan-Klopper)
 
-- **Chloe Van Der Walt** - _Bio_ - [website](website)
+- **Chloe Van Der Walt** - _UX and Development_
 
-- **Armand Naude** - _Bio_ - [website](website)
+- **Armand Naude** - _UX and Development_
 
 ## License
 
@@ -113,6 +113,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgements
 
 He suggested the implementation of the OWL Carousel componen
-[Jaco Van Heerder](https://github.com/jacovh01)
+[Jaco Van Heerden](https://github.com/jacovh01)
 
 ## References
